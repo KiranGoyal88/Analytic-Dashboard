@@ -3,7 +3,9 @@ import { Grid, IconButton } from "@mui/material";
 import "./App.css";
 import { BarChartComponent } from "./components/BarChartComponent";
 import { LineChartComponent } from "./components/LineChartComponent";
-import { PieChartComponent } from "./components/PieChartComponent";
+// import { PieChartComponent } from "./components/PieChartComponent";
+import PieChartComponent from "./components/PieChartComponent";
+import { PieChartComponent2 } from "./components/PieChartComponent2";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import GaugeChartComponent from "./components/GaugeChartComponent";
 import { FunnelChartComponent } from "./components/FunnelChartComponent";
@@ -123,7 +125,7 @@ function App() {
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><FunnelChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
-            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent2 /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
           </Grid>
