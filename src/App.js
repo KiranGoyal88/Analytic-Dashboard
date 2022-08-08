@@ -6,6 +6,7 @@ import { LineChartComponent } from "./components/LineChartComponent";
 import { PieChartComponent } from "./components/PieChartComponent";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import GaugeChartComponent from "./components/GaugeChartComponent";
+import { FunnelChartComponent } from "./components/FunnelChartComponent";
 import TabComponent from "./components/TabComponent";
 import ResponsiveAppBar from "./components/HeaderComponent";
 import StickyHeadTable from "./TableComponent";
@@ -45,28 +46,10 @@ function App() {
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6} >
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF",
-              borderRadius: "8px",
-              boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-              backgroundColor: "#FFFFFF", display: "flex",
-              flexDirection: "column",
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
-
-
-
-            </div>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF",
-              borderRadius: "8px",
-              boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-              backgroundColor: "#FFFFFF"
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='BarChart'><BarChartComponent /></ChartRenderer>
-            </div>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='BarChart'><BarChartComponent /></ChartRenderer>
           </Grid>
         </Grid>
 
@@ -77,29 +60,13 @@ function App() {
           style={{ marginTop: "20px" }}
         >
           <Grid item xs={6} >
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF",
-              borderRadius: "8px",
-              boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-              backgroundColor: "#FFFFFF", display: "flex",
-              flexDirection: "column",
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
-            </div>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
           </Grid>
           <Grid item container xs={6}>
             {[1, 1, 1, 1].map(() => {
               return (
                 <Grid item xs={6} >
-                  <div style={{
-                    margin: "1% 2%", border: "1px solid #EFEFEF",
-                    borderRadius: "8px",
-                    boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-                    backgroundColor: "#FFFFFF", display: "flex",
-                    flexDirection: "column",
-                  }}>
-                    <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
-                  </div>
+                  <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
                 </Grid>
               );
             })}
@@ -113,26 +80,10 @@ function App() {
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6} >
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF",
-              borderRadius: "8px",
-              boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-              backgroundColor: "#FFFFFF", display: "flex",
-              flexDirection: "column",
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
-            </div>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF",
-              borderRadius: "8px",
-              boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-              backgroundColor: "#FFFFFF", display: "flex",
-              flexDirection: "column",
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
-            </div>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
           </Grid>
         </Grid>
         <Grid
@@ -150,15 +101,7 @@ function App() {
           {[1, 1, 1, 1].map(() => {
             return (
               <Grid item xs={3} >
-                <div style={{
-                  margin: "1% 2%", border: "1px solid #EFEFEF",
-                  borderRadius: "8px",
-                  boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-                  backgroundColor: "#FFFFFF", display: "flex",
-                  flexDirection: "column",
-                }}>
-                  <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
-                </div>
+                <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
               </Grid>
             );
           })}
@@ -176,34 +119,16 @@ function App() {
           style={{ marginTop: "20px" }}
         >
           <Grid item xs={6} >
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
-            </div>
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
-            </div>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><FunnelChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
-            <div style={{ margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column" }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
-            </div>
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
-            </div>
-            <div style={{
-              margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
-            }}>
-              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
-            </div>
-
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
           </Grid>
         </Grid>
+
         <Grid
           container
           rowSpacing={1}
