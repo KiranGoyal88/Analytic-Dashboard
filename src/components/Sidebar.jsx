@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 
 import "../styles/sidebar.css";
-import Box from "@mui/material/Box";
+import EditWidget from "./EditWidget";
 
 export default function Sidebar({ selectedWidget, setSelectedWidget }) {
   const [open, setopen] = useState(false);
@@ -29,12 +29,10 @@ export default function Sidebar({ selectedWidget, setSelectedWidget }) {
           onClose={() => closeDrawer()}>
           <div
             style={{
-              width: "240px",
+              width: "400px",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
             }}>
-            <h3>Edit {selectedWidget}</h3>
+            <EditWidget selectedWidget={selectedWidget} />
           </div>
         </Drawer>
       </React.Fragment>

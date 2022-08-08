@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    margin-top: 10px;
+width: 100%;
+flex-direction: column;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    
+}
+
+.header-title {
+    margin: 0;    
+    color:  rgb(73, 73, 73);   
+}
