@@ -11,6 +11,7 @@ import ResponsiveAppBar from "./components/HeaderComponent";
 import StickyHeadTable from "./TableComponent";
 import BasicDateRangePicker from "./components/CalenderComponent";
 import Sidebar from './components/Sidebar';
+import ChartRenderer from './components/ChartRenderer';
 
 function App() {
 
@@ -51,10 +52,10 @@ function App() {
               backgroundColor: "#FFFFFF", display: "flex",
               flexDirection: "column",
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("LineChart")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <LineChartComponent />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
+
+
+
             </div>
           </Grid>
           <Grid item xs={6} >
@@ -62,13 +63,9 @@ function App() {
               margin: "1% 2%", border: "1px solid #EFEFEF",
               borderRadius: "8px",
               boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)",
-              backgroundColor: "#FFFFFF", display: "flex",
-              flexDirection: "column",
+              backgroundColor: "#FFFFFF"
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("BarChartComponent")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <BarChartComponent />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='BarChart'><BarChartComponent /></ChartRenderer>
             </div>
           </Grid>
         </Grid>
@@ -87,12 +84,7 @@ function App() {
               backgroundColor: "#FFFFFF", display: "flex",
               flexDirection: "column",
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("PieChartComponent")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <div style={{ padding: "0% 20%" }}>
-                <PieChartComponent />
-              </div>
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
             </div>
           </Grid>
           <Grid item container xs={6}>
@@ -106,10 +98,7 @@ function App() {
                     backgroundColor: "#FFFFFF", display: "flex",
                     flexDirection: "column",
                   }}>
-                    <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("PieChartComponent")}>
-                      <MoreVertIcon fontSize="small" />
-                    </IconButton>
-                    <GaugeChartComponent />
+                    <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
                   </div>
                 </Grid>
               );
@@ -131,10 +120,7 @@ function App() {
               backgroundColor: "#FFFFFF", display: "flex",
               flexDirection: "column",
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("LineChartComponent")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <LineChartComponent />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
             </div>
           </Grid>
           <Grid item xs={6} >
@@ -145,10 +131,7 @@ function App() {
               backgroundColor: "#FFFFFF", display: "flex",
               flexDirection: "column",
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("LineChart")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <LineChartComponent />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
             </div>
           </Grid>
         </Grid>
@@ -174,10 +157,7 @@ function App() {
                   backgroundColor: "#FFFFFF", display: "flex",
                   flexDirection: "column",
                 }}>
-                  <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("GaugeChartComponent")}>
-                    <MoreVertIcon fontSize="small" />
-                  </IconButton>
-                  <GaugeChartComponent />
+                  <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
                 </div>
               </Grid>
             );
@@ -199,48 +179,27 @@ function App() {
             <div style={{
               margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("StickyHeadTable")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-
-              <StickyHeadTable />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
             </div>
             <div style={{
               margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("StickyHeadTable")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-
-              <StickyHeadTable />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
             </div>
           </Grid>
           <Grid item xs={6} >
             <div style={{ margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column" }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("PieChart")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <div style={{ padding: "0% 10%", }}>
-                <PieChartComponent />
-              </div>
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
             </div>
             <div style={{
               margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("StickyHeadTable")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-
-              <StickyHeadTable numRows="3" />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
             </div>
             <div style={{
               margin: "1% 2%", border: "1px solid #EFEFEF", borderRadius: "8px", boxShadow: "0px 10px 18px -8.74282px rgba(0, 0, 0, 0.04)", backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column"
             }}>
-              <IconButton style={{ alignSelf: 'flex-end', marginRight: '20px' }} aria-label="delete" size="small" onClick={() => setSelectedWidget("StickyHeadTable")}>
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-
-              <StickyHeadTable numRows="3" />
+              <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
             </div>
 
           </Grid>
