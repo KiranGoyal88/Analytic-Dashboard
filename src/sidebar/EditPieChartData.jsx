@@ -4,13 +4,13 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Axis from "../sidebar/Axis";
-import Filters from "../sidebar/Filters";
-import Metrics from "../sidebar/Metrics";
-import Dimensions from "../sidebar/Dimensions";
-import TitleInput from "../sidebar/TitleInput";
+import Axis from "./Axis";
+import Filters from "./Filters";
+import Metrics from "./Metrics";
+import Dimensions from "./Dimensions";
+import TitleInput from "./TitleInput";
 
-export default function EditDataWidget() {
+export default function EditPieChartData() {
   return (
     <div>
       <Accordion sx={{ boxShadow: "none" }}>
@@ -33,14 +33,15 @@ export default function EditDataWidget() {
           aria-controls="panel1a-content"
           id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
-            Edit Data
+            Edit Widget Data
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Axis />
+          <Metrics />
+          <Filters />
         </AccordionDetails>
       </Accordion>
-      <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
+      {/* <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -54,7 +55,7 @@ export default function EditDataWidget() {
           <Metrics />
           <Filters />
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
     </div>
   );
 }

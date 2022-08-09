@@ -13,7 +13,7 @@ import TabComponent from "./components/TabComponent";
 import ResponsiveAppBar from "./components/HeaderComponent";
 import StickyHeadTable from "./TableComponent";
 import BasicDateRangePicker from "./components/CalenderComponent";
-import Sidebar from './components/Sidebar';
+import Sidebar from './sidebar/Sidebar';
 import ChartRenderer from './components/ChartRenderer';
 
 function App() {

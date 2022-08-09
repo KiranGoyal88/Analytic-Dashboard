@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import { Select, InputLabel, Autocomplete, TextField } from "@mui/material";
+import {
+  Select,
+  InputLabel,
+  Autocomplete,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import { FormControl } from "@mui/material";
+import GoogleAnalyticsIcon from "../assets/svg/GoogleAnalytics.svg";
 
 const Axis = () => {
   const [selectedAxis, setSelectedAxis] = useState("");
@@ -16,17 +23,23 @@ const Axis = () => {
   const MetricMapper = ({ metric }) => {
     return (
       <FormControl sx={{ marginTop: "10px" }} fullWidth>
-        <InputLabel id="demo-simple-select-label">Users</InputLabel>
-        <Select
-          id="demo-simple-select"
-          value={selectedAxis}
-          label="users"
+        {/* <InputLabel style={{ fontSize: "12px" }} id="demo-simple-select-label">
+          Google Analytics | Sample data
+        </InputLabel> */}
+        <TextField
+          id="Analytics"
+          label="Google Analytics | Sample data"
+          defaultValue="Users"
           size="small"
-          onChange={handleChange}>
-          <MenuItem value={"users"}>Users</MenuItem>
-          <MenuItem value={"ads"}>Ads</MenuItem>
-          <MenuItem value={"adset"}>Adset</MenuItem>
-        </Select>
+          InputProps={{
+            readOnly: true,
+            startAdornment: (
+              <InputAdornment position="start">
+                <img height="20px" width="20px" src={GoogleAnalyticsIcon} />
+              </InputAdornment>
+            ),
+          }}
+        />
       </FormControl>
     );
   };

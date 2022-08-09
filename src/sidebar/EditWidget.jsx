@@ -3,7 +3,9 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import "../styles/editwidget.css";
 import { IconButton, Typography, Box, Tab, Tabs } from "@mui/material";
-import EditDataWidget from "./EditDataWidget";
+import EditLineChartData from "./EditLineChartData";
+import EditPieChartData from "./EditPieChartData";
+import EditBarChartData from "./EditBarChartData";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -23,6 +25,17 @@ function TabPanel(props) {
     </div>
   );
 }
+
+const DataRenderer = ({ selectedWidget }) => {
+  switch (selectedWidget) {
+    case "LineChart":
+      return <EditLineChartData />;
+    case "PieChart":
+      return <EditPieChartData />;
+    case "BarChart":
+      return <EditBarChartData />;
+  }
+};
 
 function EditWidget({ selectedWidget, setSelectedWidget }) {
   const [currentTab, setCurrentTab] = useState(0);
@@ -58,7 +71,7 @@ function EditWidget({ selectedWidget, setSelectedWidget }) {
           </Tabs>
         </Box>
         <TabPanel value={currentTab} index={0}>
-          <EditDataWidget />
+          <DataRenderer selectedWidget={selectedWidget} />
         </TabPanel>
         <TabPanel value={currentTab} index={1}>
           Settings
