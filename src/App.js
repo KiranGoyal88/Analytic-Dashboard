@@ -41,8 +41,8 @@ function App() {
         </Grid>
 
         <TabComponent />
-        <div>
-          <h2> AQUISITION</h2>
+        <div style={{ marginLeft: '2%' }}>
+          <h3> AQUISITION</h3>
           <p style={{ color: "gray" }}> Google Analytics</p>
         </div>
 
@@ -75,7 +75,7 @@ function App() {
           </Grid>
         </Grid>
 
-        <div style={{ marginLeft: '20px' }}>
+        <div style={{ marginLeft: '2%' }}>
           <h3> BEHAVIOUR </h3>
           <p style={{ color: "gray" }}> Google Analytics</p>
         </div>
@@ -109,8 +109,8 @@ function App() {
           })}
         </Grid>
 
-        <div>
-          <h2> AUDIENCE </h2>
+        <div style={{ marginLeft: '2%' }}>
+          <h3> AUDIENCE </h3>
           <p style={{ color: "gray" }}> Google Analytics</p>
         </div>
 
@@ -122,7 +122,7 @@ function App() {
         >
           <Grid item xs={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
-            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><FunnelChartComponent /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='FunnelChart'><FunnelChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent2 /></ChartRenderer>

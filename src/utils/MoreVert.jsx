@@ -2,12 +2,13 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { ReactComponent as MoreVertIcon } from "../assets/svg/morevert.svg";
 
 export default function MoreVert(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -27,7 +28,8 @@ export default function MoreVert(props) {
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}>
+        onClick={handleClick}
+      >
         <MoreVertIcon fontSize="small" />
       </Button>
       <Menu
@@ -35,18 +37,19 @@ export default function MoreVert(props) {
         elevation={0}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "right"
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "left",
+          horizontal: "left"
         }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}>
+          "aria-labelledby": "basic-button"
+        }}
+      >
         <MenuItem onClick={() => onEditClick()}>Edit</MenuItem>
         <MenuItem onClick={handleClose}>Export</MenuItem>
         <MenuItem onClick={handleClose}>Delete</MenuItem>
