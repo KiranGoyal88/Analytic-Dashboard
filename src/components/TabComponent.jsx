@@ -17,7 +17,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 5 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -53,12 +53,14 @@ export default function TabComponent() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Overall" {...a11yProps(0)} />
+          <Tab label="Conversion" {...a11yProps(1)} />
+          <Tab label="Traffic" {...a11yProps(2)} />
+          <Tab label="Local" {...a11yProps(3)} />
+          <Tab label="Ecommerce" {...a11yProps(4)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      {/* <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -66,7 +68,7 @@ export default function TabComponent() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
-      </TabPanel>
+      </TabPanel> */}
     </Box>
   );
 }
