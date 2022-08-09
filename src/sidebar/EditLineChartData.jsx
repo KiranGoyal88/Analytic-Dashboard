@@ -9,6 +9,7 @@ import Filters from "./Filters";
 import Metrics from "./Metrics";
 import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
+import FilterMessage from "./FilterMessage";
 
 export default function EditLineChartData() {
   return (
@@ -38,20 +39,7 @@ export default function EditLineChartData() {
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
           <Axis />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header">
-          <Typography fontSize={14} fontWeight={"600"}>
-            Edit chart rows
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Dimensions />
-          <Metrics />
+          <FilterMessage />
           <Filters />
         </AccordionDetails>
       </Accordion>

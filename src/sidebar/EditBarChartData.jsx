@@ -6,9 +6,8 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
 import Filters from "./Filters";
-import Metrics from "./Metrics";
-import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
+import FilterMessage from "./FilterMessage";
 
 export default function EditBarChartData() {
   return (
@@ -38,20 +37,7 @@ export default function EditBarChartData() {
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
           <Axis />
-        </AccordionDetails>
-      </Accordion>
-      <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header">
-          <Typography fontSize={14} fontWeight={"600"}>
-            Edit chart rows
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Dimensions />
-          <Metrics />
+          <FilterMessage />
           <Filters />
         </AccordionDetails>
       </Accordion>
