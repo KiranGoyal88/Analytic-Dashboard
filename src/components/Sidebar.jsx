@@ -5,13 +5,13 @@ import "../styles/sidebar.css";
 import EditWidget from "./EditWidget";
 
 export default function Sidebar({ selectedWidget, setSelectedWidget }) {
-  const [open, setopen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (selectedWidget !== null) {
-      setopen(true);
+      setOpen(true);
     } else {
-      setopen(false);
+      setOpen(false);
     }
   }, [selectedWidget]);
 
@@ -32,7 +32,10 @@ export default function Sidebar({ selectedWidget, setSelectedWidget }) {
               width: "400px",
               display: "flex",
             }}>
-            <EditWidget selectedWidget={selectedWidget} />
+            <EditWidget
+              setSelectedWidget={setSelectedWidget}
+              selectedWidget={selectedWidget}
+            />
           </div>
         </Drawer>
       </React.Fragment>

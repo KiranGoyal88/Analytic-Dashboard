@@ -24,17 +24,23 @@ function TabPanel(props) {
   );
 }
 
-function EditWidget({ selectedWidget }) {
+function EditWidget({ selectedWidget, setSelectedWidget }) {
   const [currentTab, setCurrentTab] = useState(0);
 
   const handleChange = (event, tab) => {
     setCurrentTab(tab);
   };
 
+  const closeDrawer = () => {
+    setSelectedWidget(null);
+  };
+
   return (
     <div className="container">
       <div className="header">
-        <IconButton sx={{ marginRight: "100px", marginLeft: "10px" }}>
+        <IconButton
+          onClick={() => closeDrawer()}
+          sx={{ marginRight: "100px", marginLeft: "10px" }}>
           <ArrowForwardIosIcon fontSize="small" />
         </IconButton>
 
