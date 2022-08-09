@@ -15,7 +15,6 @@ const Filters = () => {
         }}
         fullWidth
         variant="outlined"
-        disableFocusRipple
         startIcon={<AddCircleOutline />}>
         Add a filter
       </Button>

@@ -9,6 +9,7 @@ import Filters from "./Filters";
 import Metrics from "./Metrics";
 import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
+import FilterHeading from "./FilterHeading";
 
 export default function EditPieChartData() {
   return (
@@ -37,7 +38,9 @@ export default function EditPieChartData() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
+          <Dimensions />
           <Metrics />
+          <FilterHeading />
           <Filters />
         </AccordionDetails>
       </Accordion>
@@ -51,7 +54,6 @@ export default function EditPieChartData() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Dimensions />
           <Metrics />
           <Filters />
         </AccordionDetails>

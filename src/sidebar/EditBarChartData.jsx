@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
 import Filters from "./Filters";
 import TitleInput from "./TitleInput";
-import FilterMessage from "./FilterMessage";
+import FilterHeading from "./FilterHeading";
 
 export default function EditBarChartData() {
   return (
@@ -37,7 +37,7 @@ export default function EditBarChartData() {
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
           <Axis />
-          <FilterMessage />
+          <FilterHeading />
           <Filters />
         </AccordionDetails>
       </Accordion>

@@ -1,11 +1,12 @@
-import { Alert } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
 import React from "react";
 
 const FilterMessage = () => {
   return (
-    <div style={{ marginTop: "10px" }}>
+    <div>
       <Alert
         sx={{
+          marginTop: "10px",
           background: "rgba(242, 242, 242, 0.5)",
         }}
         icon={false}>

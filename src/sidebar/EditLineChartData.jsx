@@ -10,6 +10,7 @@ import Metrics from "./Metrics";
 import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
 import FilterMessage from "./FilterMessage";
+import FilterHeading from "./FilterHeading";
 
 export default function EditLineChartData() {
   return (
@@ -39,6 +40,7 @@ export default function EditLineChartData() {
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
           <Axis />
+          <FilterHeading />
           <FilterMessage />
           <Filters />
         </AccordionDetails>
