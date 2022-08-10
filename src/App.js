@@ -126,13 +126,13 @@ function App() {
           style={{ marginTop: "20px" }}
         >
           <Grid item xs={6} >
-            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='Table'><StickyHeadTable /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='FunnelChart'><FunnelChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
-            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
-            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='Table'><StickyHeadTable numRows={3} /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='Table'><StickyHeadTable numRows={3} /></ChartRenderer>
           </Grid>
         </Grid>
 

@@ -6,6 +6,9 @@ import { IconButton, Typography, Box, Tab, Tabs } from "@mui/material";
 import EditLineChartData from "./EditLineChartData";
 import EditPieChartData from "./EditPieChartData";
 import EditBarChartData from "./EditBarChartData";
+import EditFunnelChartData from "./EditFunnelChartData";
+import EditGuageChartData from "./EditGaugeChartData";
+import EditTableData from "./EditTableData";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,6 +37,12 @@ const DataRenderer = ({ selectedWidget }) => {
       return <EditPieChartData />;
     case "BarChart":
       return <EditBarChartData />;
+    case "FunnelChart":
+      return <EditFunnelChartData />;
+    case "GaugeChart":
+      return <EditGuageChartData />;
+    case "Table":
+      return <EditTableData />;
   }
 };
 
