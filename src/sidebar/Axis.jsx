@@ -7,11 +7,13 @@ import {
   Autocomplete,
   TextField,
   InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { FormControl } from "@mui/material";
 import GoogleAnalyticsIcon from "../assets/svg/GoogleAnalytics.svg";
+import { Clear } from "@mui/icons-material";
 
-const Axis = () => {
+const Axis = ({ setMetricMenuState }) => {
   const [selectedAxis, setSelectedAxis] = useState("");
   const [leftMetrics, setLeftMetrics] = useState(["users", "ads"]);
   const [rightMetrics, setRightMetrics] = useState(["users"]);
@@ -20,13 +22,18 @@ const Axis = () => {
     setSelectedAxis(event.target.value);
   };
 
+  const handleSingleMetricSettings = () => {
+    console.log("sfd");
+    setMetricMenuState(true);
+  };
+
   const MetricMapper = ({ metric }) => {
     return (
-      <FormControl sx={{ marginTop: "10px" }} fullWidth>
-        {/* <InputLabel style={{ fontSize: "12px" }} id="demo-simple-select-label">
-          Google Analytics | Sample data
-        </InputLabel> */}
+      <FormControl
+        sx={{ marginTop: "10px", display: "flex", flexDirection: "row" }}>
         <TextField
+          onClick={() => handleSingleMetricSettings()}
+          sx={{ width: "90%" }}
           id="Analytics"
           label="Google Analytics | Sample data"
           defaultValue="Users"
@@ -40,6 +47,13 @@ const Axis = () => {
             ),
           }}
         />
+        <IconButton
+          disableRipple
+          disableFocusRipple
+          sx={{ marginRight: "10px" }}
+          aria-label="delete">
+          <Clear />
+        </IconButton>
       </FormControl>
     );
   };
@@ -53,7 +67,7 @@ const Axis = () => {
         return <MetricMapper />;
       })}
       <Autocomplete
-        sx={{ marginTop: "10px" }}
+        sx={{ marginTop: "10px", width: "84%" }}
         disablePortal
         id="combo"
         options={sample}
@@ -69,7 +83,7 @@ const Axis = () => {
         return <MetricMapper />;
       })}
       <Autocomplete
-        sx={{ marginTop: "10px" }}
+        sx={{ marginTop: "10px", width: "84%" }}
         disablePortal
         id="combo"
         options={sample}

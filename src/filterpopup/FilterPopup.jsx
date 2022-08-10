@@ -10,6 +10,7 @@ import { TextField } from "@mui/material";
 import Parameter from "./Parameter";
 import DimensionFilter from "./DImensionFilter";
 import { Button } from "@mui/material";
+import MetricFilter from "./MetricFilter";
 
 const style = {
   position: "absolute",
@@ -49,7 +50,10 @@ export const FilterPopup = ({ modalState, setModalState }) => {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Box sx={headerStyle}>
-            <IconButton sx={{ marginRight: "10px" }} aria-label="delete">
+            <IconButton
+              onClick={() => setModalState(false)}
+              sx={{ marginRight: "10px" }}
+              aria-label="delete">
               <Clear fontSize="large" />
             </IconButton>
           </Box>
@@ -87,7 +91,7 @@ export const FilterPopup = ({ modalState, setModalState }) => {
               }}>
               <Parameter />
             </Box>
-            <Box>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 sx={{
                   display: "flex",
@@ -105,7 +109,42 @@ export const FilterPopup = ({ modalState, setModalState }) => {
                 border: "1px solid #DDDDDD",
                 borderRadius: "4px",
               }}>
-              <DimensionFilter />
+              <DimensionFilter setModalState={setModalState} />
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                sx={{
+                  display: "flex",
+                  justifyContent: "right",
+                  marginTop: "10px",
+                }}>
+                Clear Filter
+              </Button>
+            </Box>
+            <Box
+              sx={{
+                marginTop: "20px",
+                padding: "10px",
+                paddingTop: "5px",
+                border: "1px solid #DDDDDD",
+                borderRadius: "4px",
+              }}>
+              <MetricFilter setModalState={setModalState} />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginTop: "10px",
+              }}>
+              <Button
+                sx={{ marginRight: "10px" }}
+                onClick={() => setModalState(false)}>
+                Cancel
+              </Button>
+              <Button onClick={() => setModalState(false)} variant="contained">
+                Apply Filter
+              </Button>
             </Box>
           </Box>
         </Box>

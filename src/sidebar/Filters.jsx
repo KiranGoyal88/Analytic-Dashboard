@@ -15,6 +15,7 @@ const Filters = ({ setModalState }) => {
         }}
         fullWidth
         variant="outlined"
+        size="small"
         startIcon={<AddCircleOutline />}
         onClick={() => setModalState(true)}>
         Add a filter

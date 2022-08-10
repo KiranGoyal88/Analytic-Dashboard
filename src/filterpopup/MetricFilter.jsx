@@ -9,7 +9,7 @@ import { Clear } from "@mui/icons-material";
 const filters = ["Segments", "Channel grouping", "Direct"];
 const values = ["Dog", "Cat", "Bird"];
 
-export default function DimensionFilter() {
+export default function MetricFilter() {
   const [selectedFilter, setSelectedFilter] = React.useState("");
   const [selectedValue, setSelectedValue] = React.useState("");
 
@@ -22,7 +22,7 @@ export default function DimensionFilter() {
 
   return (
     <div>
-      <p>DimensionFilter</p>
+      <p>Metric Filter</p>
       <Box>
         <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
           <InputLabel id="demo-select-small">Select Filter</InputLabel>
