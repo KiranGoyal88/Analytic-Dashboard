@@ -11,35 +11,36 @@ class PieChartComponent extends Component {
       // To avoid unnecessary update keep all options in the state.
       chartOptions: {
         chart: {
-          type: "pie"
+          type: "pie",
         },
         title: {
-          text: ""
+          text: "",
         },
         // subtitle: {
         //   text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
         // },
         accessibility: {
           announceNewData: {
-            enabled: true
+            enabled: true,
           },
           point: {
-            valueSuffix: "%"
-          }
+            valueSuffix: "%",
+          },
         },
 
         plotOptions: {
           series: {
             dataLabels: {
               enabled: true,
-              format: "{point.name}: {point.y:.1f}%"
-            }
-          }
+              format: "{point.name}: {point.y:.1f}%",
+            },
+          },
         },
 
         tooltip: {
           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+          pointFormat:
+            '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>',
         },
 
         series: [
@@ -50,40 +51,40 @@ class PieChartComponent extends Component {
               {
                 name: "Chrome",
                 y: 62.74,
-                drilldown: "Chrome"
+                drilldown: "Chrome",
               },
               {
                 name: "Firefox",
                 y: 10.57,
-                drilldown: "Firefox"
+                drilldown: "Firefox",
               },
               {
                 name: "Internet Explorer",
                 y: 7.23,
-                drilldown: "Internet Explorer"
+                drilldown: "Internet Explorer",
               },
               {
                 name: "Safari",
                 y: 5.58,
-                drilldown: "Safari"
+                drilldown: "Safari",
               },
               {
                 name: "Edge",
                 y: 4.02,
-                drilldown: "Edge"
+                drilldown: "Edge",
               },
               {
                 name: "Opera",
                 y: 1.92,
-                drilldown: "Opera"
+                drilldown: "Opera",
               },
               {
                 name: "Other",
                 y: 7.62,
-                drilldown: null
-              }
-            ]
-          }
+                drilldown: null,
+              },
+            ],
+          },
         ],
         drilldown: {
           series: [
@@ -108,8 +109,8 @@ class PieChartComponent extends Component {
                 ["v48.0", 0.13],
                 ["v47.0", 0.11],
                 ["v43.0", 0.17],
-                ["v29.0", 0.26]
-              ]
+                ["v29.0", 0.26],
+              ],
             },
             {
               name: "Firefox",
@@ -124,8 +125,8 @@ class PieChartComponent extends Component {
                 ["v51.0", 0.15],
                 ["v50.0", 0.1],
                 ["v48.0", 0.31],
-                ["v47.0", 0.12]
-              ]
+                ["v47.0", 0.12],
+              ],
             },
             {
               name: "Internet Explorer",
@@ -134,8 +135,8 @@ class PieChartComponent extends Component {
                 ["v11.0", 6.2],
                 ["v10.0", 0.29],
                 ["v9.0", 0.27],
-                ["v8.0", 0.47]
-              ]
+                ["v8.0", 0.47],
+              ],
             },
             {
               name: "Safari",
@@ -146,8 +147,8 @@ class PieChartComponent extends Component {
                 ["v10.0", 0.36],
                 ["v9.1", 0.54],
                 ["v9.0", 0.13],
-                ["v5.1", 0.2]
-              ]
+                ["v5.1", 0.2],
+              ],
             },
             {
               name: "Edge",
@@ -156,8 +157,8 @@ class PieChartComponent extends Component {
                 ["v16", 2.6],
                 ["v15", 0.92],
                 ["v14", 0.4],
-                ["v13", 0.1]
-              ]
+                ["v13", 0.1],
+              ],
             },
             {
               name: "Opera",
@@ -165,13 +166,13 @@ class PieChartComponent extends Component {
               data: [
                 ["v50.0", 0.96],
                 ["v49.0", 0.82],
-                ["v12.1", 0.14]
-              ]
-            }
-          ]
-        }
+                ["v12.1", 0.14],
+              ],
+            },
+          ],
+        },
       },
-      hoverData: null
+      hoverData: null,
     };
   }
 
