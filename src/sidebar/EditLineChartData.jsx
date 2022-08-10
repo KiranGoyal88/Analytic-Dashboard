@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -11,8 +11,11 @@ import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
 import FilterMessage from "./FilterMessage";
 import FilterHeading from "./FilterHeading";
+import { FilterPopup } from "../filterpopup/FilterPopup";
 
 export default function EditLineChartData() {
+  const [modalState, setModalState] = useState(false);
+
   return (
     <div>
       <Accordion sx={{ boxShadow: "none" }}>
@@ -42,9 +45,11 @@ export default function EditLineChartData() {
           <Axis />
           <FilterHeading />
           <FilterMessage />
-          <Filters />
+          <Filters modalState={modalState} setModalState={setModalState} />
         </AccordionDetails>
       </Accordion>
+
+      <FilterPopup modalState={modalState} setModalState={setModalState} />
     </div>
   );
 }
