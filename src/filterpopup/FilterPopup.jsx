@@ -43,7 +43,7 @@ export const FilterPopup = ({ modalState, setModalState }) => {
   return (
     <div>
       <Modal
-        open={true}
+        open={modalState}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
