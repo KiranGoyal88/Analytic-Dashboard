@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid, IconButton } from "@mui/material";
 import "./App.css";
 import { BarChartComponent } from "./components/BarChartComponent";
-import { LineChartComponent } from "./components/LineChartComponent";
+import LineChartComponent from "./components/LineChartComponent";
 // import { PieChartComponent } from "./components/PieChartComponent";
 import PieChartComponent from "./components/PieChartComponent";
 import { PieChartComponent2 } from "./components/PieChartComponent2";
@@ -15,6 +15,7 @@ import StickyHeadTable from "./TableComponent";
 import BasicDateRangePicker from "./components/CalenderComponent";
 import Sidebar from './sidebar/Sidebar';
 import ChartRenderer from './components/ChartRenderer';
+import { ReactComponent as LogsIcon } from "./assets/svg/logs.svg";
 
 function App() {
 
@@ -33,7 +34,11 @@ function App() {
           style={{ margin: "5% 0%" }}
         >
           <Grid item xs={6}>
-            <h2>Google Analytics Reports</h2>
+            {/* <LogsIcon /> */}
+            <div style={{
+              fontSize: "36px",
+              letterSpacing: "-0.02em"
+            }}>Google Analytics Report</div>
           </Grid>
           <Grid item xs={6}>
             <BasicDateRangePicker />
@@ -125,7 +130,7 @@ function App() {
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='FunnelChart'><FunnelChartComponent /></ChartRenderer>
           </Grid>
           <Grid item xs={6} >
-            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent2 /></ChartRenderer>
+            <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='StickyHeadTable'><StickyHeadTable numRows={3} /></ChartRenderer>
           </Grid>

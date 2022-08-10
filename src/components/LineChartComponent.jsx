@@ -1,60 +1,106 @@
-import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+import React, { Component } from "react";
+import { render } from "react-dom";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+class LineChartComponent extends Component {
+  constructor(props) {
+    super(props);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
-};
+    this.state = {
+      // To avoid unnecessary update keep all options in the state.
+      chartOptions: {
+        chart: {
+          type: "spline",
+          inverted: false
+        },
+        title: {
+          // text: "Solar Employment Growth by Sector, 2010-2016"
+          text: ""
+        },
+        yAxis: {
+          title: {
+            text: "Number of Employees"
+          }
+        },
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+        xAxis: {
+          accessibility: {
+            rangeDescription: "Range: 2010 to 2017"
+          },
+          title: {
+            text: "Year"
+          }
+        },
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
+        legend: {
+          layout: "vertical",
+          align: "right",
+          verticalAlign: "middle"
+        },
 
-export function LineChartComponent() {
-  return <Line options={options} data={data} />;
+        plotOptions: {
+          series: {
+            label: {
+              connectorAllowed: false
+            },
+            pointStart: 2010
+          }
+        },
+
+        series: [
+          // {
+          //   name: "Installation",
+          //   data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+          // },
+          {
+            name: "Manufacturing",
+            data: [24916, 14064, 2742, 19851, 32490, 20282, 18121, 9434, 20000, 30000, 15000]
+          },
+          {
+            name: "Sales & Distribution",
+            data: [11744, 17722, 18005, 29771, 20185, 4377, 2147, 19387, 20123, 30234, 18999]
+          },
+          {
+            name: "Project Development",
+            data: [5666, 8888, 7988, 12169, 15112, 22452, 34400, 34227, 29876, 25786, 22888]
+          },
+          {
+            name: "Other",
+            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111, 29000, 5001, 15999]
+          }
+        ],
+
+        responsive: {
+          rules: [
+            {
+              condition: {
+                maxWidth: 500
+              },
+              chartOptions: {
+                legend: {
+                  layout: "horizontal",
+                  align: "center",
+                  verticalAlign: "bottom"
+                }
+              }
+            }
+          ]
+        }
+      },
+      hoverData: null
+    };
+  }
+
+  render() {
+    const { chartOptions, hoverData } = this.state;
+
+    return (
+      <div>
+        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+      </div>
+    );
+  }
 }
+
+export default LineChartComponent;
