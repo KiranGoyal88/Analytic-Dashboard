@@ -6,6 +6,9 @@ import { IconButton, Typography, Box, Tab, Tabs } from "@mui/material";
 import EditLineChartData from "./EditLineChartData";
 import EditPieChartData from "./EditPieChartData";
 import EditBarChartData from "./EditBarChartData";
+import EditFunnelChartData from "./EditFunnelChartData";
+import EditGuageChartData from "./EditGaugeChartData";
+import EditTableData from "./EditTableData";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -16,7 +19,8 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -34,6 +38,12 @@ const DataRenderer = ({ selectedWidget }) => {
       return <EditPieChartData />;
     case "BarChart":
       return <EditBarChartData />;
+    case "FunnelChart":
+      return <EditFunnelChartData />;
+    case "GaugeChart":
+      return <EditGuageChartData />;
+    case "Table":
+      return <EditTableData />;
   }
 };
 
