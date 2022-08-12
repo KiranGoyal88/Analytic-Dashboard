@@ -12,7 +12,19 @@ export default function DimensionFilter({
       return (
         <div key={index}>
           {index > 0 && (
-            <p style={{ paddingLeft: "10px" }}>{dimensions.operator}</p>
+            <div>
+              <p style={{ paddingLeft: "10px" }}>{dimensions.operator}</p>
+              <span
+                style={{
+                  position: "absolute",
+                  width: "80%",
+                  height: "0px",
+                  left: "10%",
+                  marginTop: "-2%",
+                  border: "1px solid rgba(0, 0, 0, 0.1)"
+                }}
+              ></span>
+            </div>
           )}
           <AddNewDimensionMetric
             addNewDimensionFilter={addNewDimensionFilter}
