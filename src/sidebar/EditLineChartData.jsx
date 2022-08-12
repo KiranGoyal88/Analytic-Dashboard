@@ -18,12 +18,75 @@ export default function EditLineChartData() {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
 
+  const [appliedFilters, setAppliedFilters] = useState({
+    FilterName: "Filter1",
+    DimensionFilter: [
+      {
+        operator: "",
+        filter: "Metrics",
+        filterParameter: "> Is more",
+        filterParameterValue: "Direct",
+      },
+      {
+        operator: "AND",
+        filter: "Metrics",
+        filterParameter: "> Is more",
+        filterParameterValue: "Direct2",
+      },
+    ],
+    MetricFilter: [
+      {
+        operator: "",
+        filter: "Metrics",
+        filterParameter: "> Is more",
+        filterParameterValue: "Direct",
+      },
+      {
+        operator: "OR",
+        filter: "Metrics",
+        filterParameter: "> Is more",
+        filterParameterValue: "Direct2",
+      },
+    ],
+  });
+
+  const resetDimensionFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: "",
+        },
+      ],
+    });
+  };
+
+  const resetMetricFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: "",
+        },
+      ],
+    });
+  };
+
   return (
     <div>
       {metricMenuState ? (
         <SingleMetricSettings
+          appliedFilter={appliedFilters}
           setModalState={setModalState}
           setMetricMenuState={setMetricMenuState}
+          resetDimensionFilter={resetDimensionFilter}
+          resetMetricFilter={resetMetricFilter}
         />
       ) : (
         <div>
@@ -57,7 +120,12 @@ export default function EditLineChartData() {
         </div>
       )}
 
-      <FilterPopup modalState={modalState} setModalState={setModalState} />
+      <FilterPopup
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
     </div>
   );
 }
