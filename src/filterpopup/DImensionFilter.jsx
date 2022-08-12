@@ -2,13 +2,13 @@ import * as React from "react";
 import AddNewMetricFilter from "./AddNewMetricFilter";
 
 export default function DimensionFilter({
-  tempFilters,
+  tempFilters = [],
   setTempFilters,
   removeDimensionIndex,
-  addNewDimensionFilter,
+  addNewDimensionFilter
 }) {
   const filterFieldsRenderer = () => {
-    return tempFilters.DimensionFilter.map((dimensions, index) => {
+    return tempFilters?.DimensionFilter.map((dimensions, index) => {
       return (
         <div key={index}>
           {index > 1 && <p>{dimensions.operator}</p>}
