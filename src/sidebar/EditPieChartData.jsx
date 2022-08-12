@@ -9,10 +9,58 @@ import TitleInput from "./TitleInput";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
+import AppliedFilters from "./AppliedFilters";
 
 export default function EditPieChartData() {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
+  const [appliedFilters, setAppliedFilters] = useState({
+    FilterName: "",
+    DimensionFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ],
+    MetricFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ]
+  });
+
+  const resetDimensionFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
+  const resetMetricFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
 
   return (
     <div>
@@ -31,6 +79,11 @@ export default function EditPieChartData() {
               <Dimensions />
               <Metrics />
               <FilterHeading />
+              <AppliedFilters
+                appliedFilter={appliedFilters}
+                resetDimensionFilter={resetDimensionFilter}
+                resetMetricFilter={resetMetricFilter}
+              />
               <Filters setModalState={setModalState} />
             </AccordionDetails>
           </Accordion>
@@ -64,7 +117,12 @@ export default function EditPieChartData() {
           </Accordion>
         </div>
       )}
-      <FilterPopup modalState={modalState} setModalState={setModalState} />
+      <FilterPopup
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
       {/* <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

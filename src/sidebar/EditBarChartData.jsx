@@ -18,33 +18,21 @@ export default function EditBarChartData() {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
-    FilterName: "Filter1",
+    FilterName: "",
     DimensionFilter: [
       {
         operator: "",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct"
-      },
-      {
-        operator: "AND",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct2"
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
       }
     ],
     MetricFilter: [
       {
         operator: "",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct"
-      },
-      {
-        operator: "OR",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct2"
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
       }
     ]
   });

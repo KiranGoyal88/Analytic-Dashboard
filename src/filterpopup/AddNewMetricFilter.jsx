@@ -6,22 +6,15 @@ import { Box, IconButton, InputLabel, TextField } from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import OperatorButtonsMetrics from "./OperatorButtonsMetrics";
 
-const filters = ["Metrics"];
-const values = [
-  "= Equals",
-  "= Does not equal",
-  "> Is more",
-  "> Is more or equals",
-  "< Is less",
-  "< Is less or equal",
-];
+const filters = ["Metrics", "Total", "Average"];
+const values = ["= Equals", "= Does not equal", "> Is more", "> Is more or equals", "< Is less", "< Is less or equal"];
 
 export default function AddNewMetricFilter({
   tempFilters,
   setTempFilters,
   index,
   removeMetricIndex,
-  addNewMetricFilter,
+  addNewMetricFilter
 }) {
   return (
     <div>
@@ -34,23 +27,24 @@ export default function AddNewMetricFilter({
               id="demo-filter-small"
               value={tempFilters.MetricFilter[index].filter}
               label="Select Value"
-              onChange={(e) =>
+              onChange={e =>
                 setTempFilters({
                   ...tempFilters,
                   MetricFilter: [
                     ...tempFilters.MetricFilter.slice(0, index),
                     {
                       ...tempFilters.MetricFilter[index],
-                      filter: e.target.value,
+                      filter: e.target.value
                     },
-                    ...tempFilters.MetricFilter.slice(index + 1),
-                  ],
+                    ...tempFilters.MetricFilter.slice(index + 1)
+                  ]
                 })
-              }>
+              }
+            >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {filters.map((filter) => (
+              {filters.map(filter => (
                 <MenuItem key={filter} value={filter}>
                   {filter}
                 </MenuItem>
@@ -64,23 +58,24 @@ export default function AddNewMetricFilter({
               id="demo-value-small"
               value={tempFilters.MetricFilter[index].filterParameter}
               label="Select Value"
-              onChange={(e) =>
+              onChange={e =>
                 setTempFilters({
                   ...tempFilters,
                   MetricFilter: [
                     ...tempFilters.MetricFilter.slice(0, index),
                     {
                       ...tempFilters.MetricFilter[index],
-                      filterParameter: e.target.value,
+                      filterParameter: e.target.value
                     },
-                    ...tempFilters.MetricFilter.slice(index + 1),
-                  ],
+                    ...tempFilters.MetricFilter.slice(index + 1)
+                  ]
                 })
-              }>
+              }
+            >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {values.map((value) => (
+              {values.map(value => (
                 <MenuItem key={value} value={value}>
                   {value}
                 </MenuItem>
@@ -93,17 +88,17 @@ export default function AddNewMetricFilter({
             variant="outlined"
             size="small"
             value={tempFilters.MetricFilter[index].filterParameterValue}
-            onChange={(e) =>
+            onChange={e =>
               setTempFilters({
                 ...tempFilters,
                 MetricFilter: [
                   ...tempFilters.MetricFilter.slice(0, index),
                   {
                     ...tempFilters.MetricFilter[index],
-                    filterParameterValue: e.target.value,
+                    filterParameterValue: e.target.value
                   },
-                  ...tempFilters.MetricFilter.slice(index + 1),
-                ],
+                  ...tempFilters.MetricFilter.slice(index + 1)
+                ]
               })
             }
           />
@@ -115,10 +110,7 @@ export default function AddNewMetricFilter({
               setTempFilters={setTempFilters}
               addNewMetricFilter={addNewMetricFilter}
             />
-            <IconButton
-              onClick={() => removeMetricIndex(index)}
-              sx={{ marginRight: "10px" }}
-              aria-label="delete">
+            <IconButton onClick={() => removeMetricIndex(index)} sx={{ marginRight: "10px" }} aria-label="delete">
               <Clear />
             </IconButton>
           </div>

@@ -6,14 +6,16 @@ import { Box, IconButton, InputLabel, TextField } from "@mui/material";
 import OperatorButtons from "./OperatorButtons";
 import { Clear } from "@mui/icons-material";
 
-const filters = ["Metrics"];
+const filters = ["Dimensions", "Name", "Title"];
 const values = [
-  "= Equals",
-  "= Does not equal",
-  "> Is more",
-  "> Is more or equals",
-  "< Is less",
-  "< Is less or equal",
+  "Contains",
+  "Does not contain",
+  "Exactly matches",
+  "Does not exactly match",
+  "Starts with",
+  "Does not start with",
+  "Ends with",
+  "Does not end with"
 ];
 
 export default function AddNewDimensionMetric({
@@ -21,7 +23,7 @@ export default function AddNewDimensionMetric({
   setTempFilters,
   index,
   removeDimensionIndex,
-  addNewDimensionFilter,
+  addNewDimensionFilter
 }) {
   return (
     <div>
@@ -34,23 +36,24 @@ export default function AddNewDimensionMetric({
               id="demo-filter-small"
               value={tempFilters.DimensionFilter[index].filter}
               label="Select Value"
-              onChange={(e) =>
+              onChange={e =>
                 setTempFilters({
                   ...tempFilters,
                   DimensionFilter: [
                     ...tempFilters.DimensionFilter.slice(0, index),
                     {
                       ...tempFilters.DimensionFilter[index],
-                      filter: e.target.value,
+                      filter: e.target.value
                     },
-                    ...tempFilters.DimensionFilter.slice(index + 1),
-                  ],
+                    ...tempFilters.DimensionFilter.slice(index + 1)
+                  ]
                 })
-              }>
+              }
+            >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {filters.map((filter) => (
+              {filters.map(filter => (
                 <MenuItem key={filter} value={filter}>
                   {filter}
                 </MenuItem>
@@ -64,23 +67,24 @@ export default function AddNewDimensionMetric({
               id="demo-value-small"
               value={tempFilters.DimensionFilter[index].filterParameter}
               label="Select Value"
-              onChange={(e) =>
+              onChange={e =>
                 setTempFilters({
                   ...tempFilters,
                   DimensionFilter: [
                     ...tempFilters.DimensionFilter.slice(0, index),
                     {
                       ...tempFilters.DimensionFilter[index],
-                      filterParameter: e.target.value,
+                      filterParameter: e.target.value
                     },
-                    ...tempFilters.DimensionFilter.slice(index + 1),
-                  ],
+                    ...tempFilters.DimensionFilter.slice(index + 1)
+                  ]
                 })
-              }>
+              }
+            >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {values.map((value) => (
+              {values.map(value => (
                 <MenuItem key={value} value={value}>
                   {value}
                 </MenuItem>
@@ -93,17 +97,17 @@ export default function AddNewDimensionMetric({
             variant="outlined"
             size="small"
             value={tempFilters.DimensionFilter[index].filterParameterValue}
-            onChange={(e) =>
+            onChange={e =>
               setTempFilters({
                 ...tempFilters,
                 DimensionFilter: [
                   ...tempFilters.DimensionFilter.slice(0, index),
                   {
                     ...tempFilters.DimensionFilter[index],
-                    filterParameterValue: e.target.value,
+                    filterParameterValue: e.target.value
                   },
-                  ...tempFilters.DimensionFilter.slice(index + 1),
-                ],
+                  ...tempFilters.DimensionFilter.slice(index + 1)
+                ]
               })
             }
           />
@@ -115,10 +119,7 @@ export default function AddNewDimensionMetric({
               setTempFilters={setTempFilters}
               addNewDimensionFilter={addNewDimensionFilter}
             />
-            <IconButton
-              onClick={() => removeDimensionIndex(index)}
-              sx={{ marginRight: "10px" }}
-              aria-label="delete">
+            <IconButton onClick={() => removeDimensionIndex(index)} sx={{ marginRight: "10px" }} aria-label="delete">
               <Clear />
             </IconButton>
           </div>

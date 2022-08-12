@@ -19,19 +19,19 @@ export default function EditLineChartData() {
     DimensionFilter: [
       {
         operator: "",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct",
-      },
+        filter: "Dimensions",
+        filterParameter: "Contains",
+        filterParameterValue: "Direct"
+      }
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "Metrics",
         filterParameter: "> Is more",
-        filterParameterValue: "Direct",
-      },
-    ],
+        filterParameterValue: "200"
+      }
+    ]
   });
 
   const resetDimensionFilter = () => {
@@ -42,9 +42,9 @@ export default function EditLineChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -56,9 +56,9 @@ export default function EditLineChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -79,7 +79,8 @@ export default function EditLineChartData() {
               sx={{ minHeight: "40px" }}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
-              id="panel1a-header">
+              id="panel1a-header"
+            >
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Title
               </Typography>
@@ -89,10 +90,7 @@ export default function EditLineChartData() {
             </AccordionDetails>
           </Accordion>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header">
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Widget Data
               </Typography>

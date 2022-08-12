@@ -11,9 +11,57 @@ import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
 import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
+import AppliedFilters from "./AppliedFilters";
 
 export default function EditTableData() {
   const [modalState, setModalState] = useState(false);
+  const [appliedFilters, setAppliedFilters] = useState({
+    FilterName: "",
+    DimensionFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ],
+    MetricFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ]
+  });
+
+  const resetDimensionFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
+  const resetMetricFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
   return (
     <div>
       <Accordion sx={{ boxShadow: "none" }}>
@@ -41,10 +89,20 @@ export default function EditTableData() {
           <Dimensions />
           <Metrics />
           <FilterHeading />
+          <AppliedFilters
+            appliedFilter={appliedFilters}
+            resetDimensionFilter={resetDimensionFilter}
+            resetMetricFilter={resetMetricFilter}
+          />
           <Filters setModalState={setModalState} />
         </AccordionDetails>
       </Accordion>
-      <FilterPopup modalState={modalState} setModalState={setModalState} />
+      <FilterPopup
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
       {/* <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
