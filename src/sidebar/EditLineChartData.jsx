@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
-import Filters from "./Filters";
-import Metrics from "./Metrics";
-import Dimensions from "./Dimensions";
+
 import TitleInput from "./TitleInput";
-import FilterMessage from "./FilterMessage";
-import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import SingleMetricSettings from "./SingleMetricSettings";
 
@@ -27,12 +23,6 @@ export default function EditLineChartData() {
         filterParameter: "> Is more",
         filterParameterValue: "Direct",
       },
-      {
-        operator: "AND",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct2",
-      },
     ],
     MetricFilter: [
       {
@@ -40,12 +30,6 @@ export default function EditLineChartData() {
         filter: "Metrics",
         filterParameter: "> Is more",
         filterParameterValue: "Direct",
-      },
-      {
-        operator: "OR",
-        filter: "Metrics",
-        filterParameter: "> Is more",
-        filterParameterValue: "Direct2",
       },
     ],
   });

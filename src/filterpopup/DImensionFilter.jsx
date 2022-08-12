@@ -1,5 +1,5 @@
 import * as React from "react";
-import AddNewMetricFilter from "./AddNewMetricFilter";
+import AddNewDimensionMetric from "./AddNewDimensionMetric";
 
 export default function DimensionFilter({
   tempFilters = [],
@@ -11,8 +11,10 @@ export default function DimensionFilter({
     return tempFilters?.DimensionFilter.map((dimensions, index) => {
       return (
         <div key={index}>
-          {index > 1 && <p>{dimensions.operator}</p>}
-          <AddNewMetricFilter
+          {index > 0 && (
+            <p style={{ paddingLeft: "10px" }}>{dimensions.operator}</p>
+          )}
+          <AddNewDimensionMetric
             addNewDimensionFilter={addNewDimensionFilter}
             tempFilters={tempFilters}
             setTempFilters={setTempFilters}

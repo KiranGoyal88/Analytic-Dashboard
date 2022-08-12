@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FormControl, InputAdornment, TextField } from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
@@ -27,17 +27,28 @@ const AppliedFilters = ({
   resetDimensionFilter,
   resetMetricFilter,
 }) => {
-  const FilterDimensionValue = filterValueGenerator(
-    appliedFilter.FilterName,
-    appliedFilter.DimensionFilter
-  );
-  const FilterMetricValue = filterValueGenerator(
-    appliedFilter.FilterName,
-    appliedFilter.MetricFilter
-  );
+  const [filterDimensionValue, setFilterDimensionValue] = useState("");
+  const [filterMetricValue, setFilterMetricValue] = useState("");
+
+  useEffect(() => {
+    setFilterDimensionValue(
+      filterValueGenerator(
+        appliedFilter.FilterName,
+        appliedFilter.DimensionFilter
+      )
+    );
+    setFilterMetricValue(
+      filterValueGenerator(appliedFilter.FilterName, appliedFilter.MetricFilter)
+    );
+  }, [appliedFilter]);
+
+  useEffect(() => {
+    console.log(filterDimensionValue);
+  }, [filterDimensionValue]);
+
   return (
     <div>
-      {FilterDimensionValue.length > 0 &&
+      {filterDimensionValue.length > 0 &&
         appliedFilter.DimensionFilter[0].filter !== "" && (
           <FormControl
             sx={{
@@ -52,7 +63,7 @@ const AppliedFilters = ({
                 background: "rgba(221, 221, 221, 0.1)",
               }}
               id="Analytics"
-              defaultValue={FilterDimensionValue}
+              value={filterDimensionValue}
               size="small"
               inputProps={{ readOnly: true }}
             />
@@ -65,7 +76,7 @@ const AppliedFilters = ({
             </IconButton>
           </FormControl>
         )}
-      {FilterMetricValue.length > 0 &&
+      {filterMetricValue.length > 0 &&
         appliedFilter.MetricFilter[0].filter !== "" && (
           <FormControl
             sx={{
@@ -80,7 +91,7 @@ const AppliedFilters = ({
                 background: "rgba(221, 221, 221, 0.1)",
               }}
               id="Analytics"
-              defaultValue={FilterMetricValue}
+              value={filterMetricValue}
               size="small"
               inputProps={{ readOnly: true }}
             />

@@ -22,7 +22,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   display: "flex",
-  flexDirection: "column"
+  flexDirection: "column",
 
   // p: 4,
 };
@@ -30,13 +30,13 @@ const style = {
 const headerStyle = {
   display: "flex",
   justifyContent: "flex-end",
-  boxShadow: `0px 2px 4px rgba(0, 0, 0, 0.05)`
+  boxShadow: `0px 2px 4px rgba(0, 0, 0, 0.05)`,
 };
 
 const bodyStyle = {
   display: "flex",
   flexDirection: "column",
-  p: 3
+  p: 3,
 };
 
 const defaultFilter = {
@@ -46,73 +46,78 @@ const defaultFilter = {
       operator: "",
       filter: "Metrics",
       filterParameter: "> Is more",
-      filterParameterValue: "Direct"
+      filterParameterValue: "Direct",
     },
     {
       operator: "AND",
       filter: "Metrics",
       filterParameter: "> Is more",
-      filterParameterValue: "Direct2"
-    }
+      filterParameterValue: "Direct2",
+    },
   ],
   MetricFilter: [
     {
       operator: "",
       filter: "Metrics",
       filterParameter: "> Is more",
-      filterParameterValue: "Direct"
+      filterParameterValue: "Direct",
     },
     {
       operator: "OR",
       filter: "Metrics",
       filterParameter: "> Is more",
-      filterParameterValue: "Direct2"
-    }
-  ]
+      filterParameterValue: "Direct2",
+    },
+  ],
 };
 
-export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaultFilter, setAppliedFilters }) => {
+export const FilterPopup = ({
+  modalState,
+  setModalState,
+  appliedFilters = defaultFilter,
+  setAppliedFilters,
+}) => {
   const [tempFilters, setTempFilters] = useState(appliedFilters);
+
+  const saveTempToAppliedFilters = () => {
+    setAppliedFilters(tempFilters);
+    setModalState(false);
+  };
+
+  const cancelFilterChange = () => {
+    setTempFilters(appliedFilters);
+    setModalState(false);
+  };
 
   const handleClose = () => setModalState(false);
 
-  const removeDimensionIndex = index => {
-    setTempFilters({
-      ...tempFilters,
-      DimensionFilter: [...tempFilters.DimensionFilter.slice(0, index), ...tempFilters.DimensionFilter.slice(index + 1)]
-    });
-  };
-  const removeMetricIndex = index => {
-    setTempFilters({
-      ...tempFilters,
-      MetricFilter: [...tempFilters.MetricFilter.slice(0, index), ...tempFilters.MetricFilter.slice(index + 1)]
-    });
-  };
-
-  const updateDimensionFilter = (index, filter, filterParameter, filterParameterValue) => {
+  const removeDimensionIndex = (index) => {
     setTempFilters({
       ...tempFilters,
       DimensionFilter: [
         ...tempFilters.DimensionFilter.slice(0, index),
-        {
-          operator: tempFilters.DimensionFilter[index].operator,
-          filter: filter,
-          filterParameter: filterParameter,
-          filterParameterValue: filterParameterValue
-        },
-        ...tempFilters.DimensionFilter.slice(index + 1)
-      ]
+        ...tempFilters.DimensionFilter.slice(index + 1),
+      ],
     });
   };
-
-  const updateFilterName = name => {
+  const removeMetricIndex = (index) => {
     setTempFilters({
       ...tempFilters,
-      FilterName: name
+      MetricFilter: [
+        ...tempFilters.MetricFilter.slice(0, index),
+        ...tempFilters.MetricFilter.slice(index + 1),
+      ],
     });
   };
 
-  const addNewDimensionFilter = operator => {
+  const updateFilterName = (name) => {
+    setTempFilters({
+      ...tempFilters,
+      FilterName: name,
+    });
+  };
+
+  const addNewDimensionFilter = (operator) => {
     setTempFilters({
       ...tempFilters,
       DimensionFilter: [
@@ -121,15 +126,26 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
           operator: operator,
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
-  useEffect(() => {
-    console.log(tempFilters);
-  }, [tempFilters]);
+  const addNewMetricFilter = (operator) => {
+    setTempFilters({
+      ...tempFilters,
+      MetricFilter: [
+        ...tempFilters.MetricFilter,
+        {
+          operator: operator,
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: "",
+        },
+      ],
+    });
+  };
 
   return (
     <div>
@@ -137,11 +153,13 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
         open={modalState}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Box sx={headerStyle}>
-            <IconButton onClick={() => setModalState(false)} sx={{ marginRight: "10px" }} aria-label="delete">
+            <IconButton
+              onClick={() => setModalState(false)}
+              sx={{ marginRight: "10px" }}
+              aria-label="delete">
               <Clear fontSize="large" />
             </IconButton>
           </Box>
@@ -150,9 +168,8 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
               sx={{
                 display: "flex",
                 alignItems: "center",
-                flexWrap: "wrap"
-              }}
-            >
+                flexWrap: "wrap",
+              }}>
               <img height="30px" width="30px" src={GoogleAnalyticsIcon} />
 
               <span className="heading">Lorum Ipsum</span>
@@ -161,16 +178,15 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
               sx={{
                 display: "flex",
                 alignItems: "flex-end",
-                marginTop: "10px"
-              }}
-            >
+                marginTop: "10px",
+              }}>
               <Edit sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
                 id="input-with-sx"
                 label="Filter name"
                 variant="standard"
                 value={tempFilters.FilterName}
-                onChange={e => updateFilterName(e.target.value)}
+                onChange={(e) => updateFilterName(e.target.value)}
               />
             </Box>
             <Box
@@ -179,9 +195,8 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 padding: "10px",
                 paddingTop: "5px",
                 border: "1px solid #DDDDDD",
-                borderRadius: "4px"
-              }}
-            >
+                borderRadius: "4px",
+              }}>
               <Parameter />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -189,9 +204,8 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 sx={{
                   display: "flex",
                   justifyContent: "right",
-                  marginTop: "10px"
-                }}
-              >
+                  marginTop: "10px",
+                }}>
                 Clear Filter
               </Button>
             </Box>
@@ -200,9 +214,8 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 padding: "10px",
                 paddingTop: "5px",
                 border: "1px solid #DDDDDD",
-                borderRadius: "4px"
-              }}
-            >
+                borderRadius: "4px",
+              }}>
               <DimensionFilter
                 addNewDimensionFilter={addNewDimensionFilter}
                 tempFilters={tempFilters}
@@ -215,9 +228,8 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 sx={{
                   display: "flex",
                   justifyContent: "right",
-                  marginTop: "10px"
-                }}
-              >
+                  marginTop: "10px",
+                }}>
                 Clear Filter
               </Button>
             </Box>
@@ -226,19 +238,22 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 padding: "10px",
                 paddingTop: "5px",
                 border: "1px solid #DDDDDD",
-                borderRadius: "4px"
-              }}
-            >
-              <MetricFilter tempFilters={tempFilters} setTempFilters={setTempFilters} />
+                borderRadius: "4px",
+              }}>
+              <MetricFilter
+                tempFilters={tempFilters}
+                setTempFilters={setTempFilters}
+                removeMetricIndex={removeMetricIndex}
+                addNewMetricFilter={addNewMetricFilter}
+              />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 sx={{
                   display: "flex",
                   justifyContent: "right",
-                  marginTop: "10px"
-                }}
-              >
+                  marginTop: "10px",
+                }}>
                 Clear Filter
               </Button>
             </Box>
@@ -246,11 +261,12 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
               sx={{
                 display: "flex",
                 justifyContent: "flex-end",
-                marginTop: "10px"
-              }}
-            >
-              <Button onClick={() => setModalState(false)}>Cancel</Button>
-              <Button onClick={() => setModalState(false)} variant="contained">
+                marginTop: "10px",
+              }}>
+              <Button onClick={() => cancelFilterChange()}>Cancel</Button>
+              <Button
+                onClick={() => saveTempToAppliedFilters()}
+                variant="contained">
                 Apply Filter
               </Button>
             </Box>

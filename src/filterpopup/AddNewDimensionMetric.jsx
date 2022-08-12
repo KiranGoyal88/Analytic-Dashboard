@@ -3,8 +3,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Box, IconButton, InputLabel, TextField } from "@mui/material";
+import OperatorButtons from "./OperatorButtons";
 import { Clear } from "@mui/icons-material";
-import OperatorButtonsMetrics from "./OperatorButtonsMetrics";
 
 const filters = ["Metrics"];
 const values = [
@@ -16,12 +16,12 @@ const values = [
   "< Is less or equal",
 ];
 
-export default function AddNewMetricFilter({
+export default function AddNewDimensionMetric({
   tempFilters,
   setTempFilters,
   index,
-  removeMetricIndex,
-  addNewMetricFilter,
+  removeDimensionIndex,
+  addNewDimensionFilter,
 }) {
   return (
     <div>
@@ -32,18 +32,18 @@ export default function AddNewMetricFilter({
             <Select
               labelId="demo-filter-small"
               id="demo-filter-small"
-              value={tempFilters.MetricFilter[index].filter}
+              value={tempFilters.DimensionFilter[index].filter}
               label="Select Value"
               onChange={(e) =>
                 setTempFilters({
                   ...tempFilters,
-                  MetricFilter: [
-                    ...tempFilters.MetricFilter.slice(0, index),
+                  DimensionFilter: [
+                    ...tempFilters.DimensionFilter.slice(0, index),
                     {
-                      ...tempFilters.MetricFilter[index],
+                      ...tempFilters.DimensionFilter[index],
                       filter: e.target.value,
                     },
-                    ...tempFilters.MetricFilter.slice(index + 1),
+                    ...tempFilters.DimensionFilter.slice(index + 1),
                   ],
                 })
               }>
@@ -62,18 +62,18 @@ export default function AddNewMetricFilter({
             <Select
               labelId="demo-value-small"
               id="demo-value-small"
-              value={tempFilters.MetricFilter[index].filterParameter}
+              value={tempFilters.DimensionFilter[index].filterParameter}
               label="Select Value"
               onChange={(e) =>
                 setTempFilters({
                   ...tempFilters,
-                  MetricFilter: [
-                    ...tempFilters.MetricFilter.slice(0, index),
+                  DimensionFilter: [
+                    ...tempFilters.DimensionFilter.slice(0, index),
                     {
-                      ...tempFilters.MetricFilter[index],
+                      ...tempFilters.DimensionFilter[index],
                       filterParameter: e.target.value,
                     },
-                    ...tempFilters.MetricFilter.slice(index + 1),
+                    ...tempFilters.DimensionFilter.slice(index + 1),
                   ],
                 })
               }>
@@ -92,31 +92,31 @@ export default function AddNewMetricFilter({
             id="standard-basic"
             variant="outlined"
             size="small"
-            value={tempFilters.MetricFilter[index].filterParameterValue}
+            value={tempFilters.DimensionFilter[index].filterParameterValue}
             onChange={(e) =>
               setTempFilters({
                 ...tempFilters,
-                MetricFilter: [
-                  ...tempFilters.MetricFilter.slice(0, index),
+                DimensionFilter: [
+                  ...tempFilters.DimensionFilter.slice(0, index),
                   {
-                    ...tempFilters.MetricFilter[index],
+                    ...tempFilters.DimensionFilter[index],
                     filterParameterValue: e.target.value,
                   },
-                  ...tempFilters.MetricFilter.slice(index + 1),
+                  ...tempFilters.DimensionFilter.slice(index + 1),
                 ],
               })
             }
           />
 
           <div style={{ marginLeft: "auto" }}>
-            <OperatorButtonsMetrics
+            <OperatorButtons
               tempFilters={tempFilters}
               index={index}
               setTempFilters={setTempFilters}
-              addNewMetricFilter={addNewMetricFilter}
+              addNewDimensionFilter={addNewDimensionFilter}
             />
             <IconButton
-              onClick={() => removeMetricIndex(index)}
+              onClick={() => removeDimensionIndex(index)}
               sx={{ marginRight: "10px" }}
               aria-label="delete">
               <Clear />

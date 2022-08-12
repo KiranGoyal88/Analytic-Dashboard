@@ -1,15 +1,15 @@
 import * as React from "react";
 import { Button, ButtonGroup } from "@mui/material";
 
-export default function OperatorButtons({
+export default function OperatorButtonsMetrics({
   index,
   tempFilters,
-  addNewDimensionFilter,
+  addNewMetricFilter,
 }) {
   const [disabled, setDisabled] = React.useState(true);
 
   React.useEffect(() => {
-    if (tempFilters.DimensionFilter.length - 1 === index) {
+    if (tempFilters.MetricFilter.length - 1 === index) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -26,17 +26,17 @@ export default function OperatorButtons({
       aria-label="outlined primary button group">
       <Button
         sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewDimensionFilter("-")}>
+        onClick={() => addNewMetricFilter("-")}>
         -
       </Button>
       <Button
         sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewDimensionFilter("OR")}>
+        onClick={() => addNewMetricFilter("OR")}>
         OR
       </Button>
       <Button
         sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewDimensionFilter("AND")}>
+        onClick={() => addNewMetricFilter("AND")}>
         AND
       </Button>
     </ButtonGroup>

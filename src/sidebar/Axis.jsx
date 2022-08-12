@@ -23,7 +23,6 @@ const Axis = ({ setMetricMenuState }) => {
   };
 
   const handleSingleMetricSettings = () => {
-    console.log("sfd");
     setMetricMenuState(true);
   };
 
