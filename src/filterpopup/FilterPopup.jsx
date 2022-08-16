@@ -75,16 +75,23 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
   const handleClose = () => setModalState(false);
 
   const removeDimensionIndex = index => {
-    setTempFilters({
-      ...tempFilters,
-      DimensionFilter: [...tempFilters.DimensionFilter.slice(0, index), ...tempFilters.DimensionFilter.slice(index + 1)]
-    });
+    if (tempFilters.DimensionFilter.length > 1) {
+      setTempFilters({
+        ...tempFilters,
+        DimensionFilter: [
+          ...tempFilters.DimensionFilter.slice(0, index),
+          ...tempFilters.DimensionFilter.slice(index + 1)
+        ]
+      });
+    }
   };
   const removeMetricIndex = index => {
-    setTempFilters({
-      ...tempFilters,
-      MetricFilter: [...tempFilters.MetricFilter.slice(0, index), ...tempFilters.MetricFilter.slice(index + 1)]
-    });
+    if (tempFilters.MetricFilter.length > 1) {
+      setTempFilters({
+        ...tempFilters,
+        MetricFilter: [...tempFilters.MetricFilter.slice(0, index), ...tempFilters.MetricFilter.slice(index + 1)]
+      });
+    }
   };
 
   const updateFilterName = name => {
@@ -124,6 +131,38 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
     });
   };
 
+  const clearFilter = () => {
+    setTempFilters(defaultFilter);
+  };
+
+  const clearDimensionFilter = () => {
+    setTempFilters({
+      ...tempFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
+  const clearMetricFilter = () => {
+    setTempFilters({
+      ...tempFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
   return (
     <div>
       <Modal
@@ -135,7 +174,7 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
         <Box sx={style}>
           <Box sx={headerStyle}>
             <IconButton onClick={() => setModalState(false)} sx={{ marginRight: "10px" }} aria-label="delete">
-              <Clear fontSize="large" />
+              <Clear fontSize="large" onClick={() => cancelFilterChange()} />
             </IconButton>
           </Box>
           <Box sx={bodyStyle}>
@@ -210,6 +249,7 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                   justifyContent: "right",
                   marginTop: "10px"
                 }}
+                onClick={() => clearDimensionFilter()}
               >
                 Clear Filter
               </Button>
@@ -236,6 +276,7 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                   justifyContent: "right",
                   marginTop: "10px"
                 }}
+                onClick={() => clearMetricFilter()}
               >
                 Clear Filter
               </Button>

@@ -1,11 +1,7 @@
 import * as React from "react";
 import { Button, ButtonGroup } from "@mui/material";
 
-export default function OperatorButtonsMetrics({
-  index,
-  tempFilters,
-  addNewMetricFilter,
-}) {
+export default function OperatorButtonsMetrics({ index, tempFilters, addNewMetricFilter }) {
   const [disabled, setDisabled] = React.useState(true);
 
   React.useEffect(() => {
@@ -23,20 +19,19 @@ export default function OperatorButtonsMetrics({
       disabled={disabled}
       exclusive
       variant="outlined"
-      aria-label="outlined primary button group">
+      aria-label="outlined primary button group"
+    >
       <Button
+        disabled="true"
         sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewMetricFilter("-")}>
+        onClick={() => addNewMetricFilter("-")}
+      >
         -
       </Button>
-      <Button
-        sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewMetricFilter("OR")}>
+      <Button sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }} onClick={() => addNewMetricFilter("OR")}>
         OR
       </Button>
-      <Button
-        sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewMetricFilter("AND")}>
+      <Button sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }} onClick={() => addNewMetricFilter("AND")}>
         AND
       </Button>
     </ButtonGroup>
