@@ -21,13 +21,6 @@ export default function OperatorButtonsMetrics({ index, tempFilters, addNewMetri
       variant="outlined"
       aria-label="outlined primary button group"
     >
-      <Button
-        disabled="true"
-        sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewMetricFilter("-")}
-      >
-        -
-      </Button>
       <Button sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }} onClick={() => addNewMetricFilter("OR")}>
         OR
       </Button>

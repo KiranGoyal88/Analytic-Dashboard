@@ -21,13 +21,6 @@ export default function OperatorButtons({ index, tempFilters, addNewDimensionFil
       variant="outlined"
       aria-label="outlined primary button group"
     >
-      <Button
-        disabled="true"
-        sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => addNewDimensionFilter("-")}
-      >
-        -
-      </Button>
       <Button sx={{ borderColor: "#DDDDDD", color: "rgba(0, 0, 0, 0.6)" }} onClick={() => addNewDimensionFilter("OR")}>
         OR
       </Button>

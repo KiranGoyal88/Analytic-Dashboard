@@ -62,7 +62,28 @@ const defaultFilter = {
 export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaultFilter, setAppliedFilters }) => {
   const [tempFilters, setTempFilters] = useState(appliedFilters);
 
+  useEffect(() => {
+    setTempFilters(appliedFilters);
+  }, [appliedFilters]);
+
+  const checkDimension = () => {
+    let lastDimension = tempFilters.DimensionFilter[tempFilters.DimensionFilter.length - 1];
+    const { filter, filterParameter, filterParameterValue } = lastDimension;
+    if (!filter || !filterParameter || !filterParameterValue) {
+      tempFilters.DimensionFilter.pop();
+    }
+  };
+  const checkMetric = () => {
+    let lastMetric = tempFilters.MetricFilter[tempFilters.MetricFilter.length - 1];
+    const { filter, filterParameter, filterParameterValue } = lastMetric;
+    if (!filter || !filterParameter || !filterParameterValue) {
+      tempFilters.MetricFilter.pop();
+    }
+  };
+
   const saveTempToAppliedFilters = () => {
+    checkDimension();
+    checkMetric();
     setAppliedFilters(tempFilters);
     setModalState(false);
   };
@@ -102,33 +123,57 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
   };
 
   const addNewDimensionFilter = operator => {
-    setTempFilters({
-      ...tempFilters,
-      DimensionFilter: [
-        ...tempFilters.DimensionFilter,
-        {
-          operator: operator,
-          filter: "",
-          filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
-    });
+    let update = true;
+    for (let dimension of tempFilters.DimensionFilter) {
+      console.log("Metric:: ", dimension);
+      const { filter, filterParameter, filterParameterValue } = dimension;
+      if (!filter || !filterParameter || !filterParameterValue) {
+        update = false;
+      }
+    }
+    if (update) {
+      setTempFilters({
+        ...tempFilters,
+        DimensionFilter: [
+          ...tempFilters.DimensionFilter,
+          {
+            operator: operator,
+            filter: "",
+            filterParameter: "",
+            filterParameterValue: ""
+          }
+        ]
+      });
+    } else {
+      window.alert("Please fill all details first!");
+    }
   };
 
   const addNewMetricFilter = operator => {
-    setTempFilters({
-      ...tempFilters,
-      MetricFilter: [
-        ...tempFilters.MetricFilter,
-        {
-          operator: operator,
-          filter: "",
-          filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
-    });
+    let update = true;
+    for (let metric of tempFilters.MetricFilter) {
+      console.log("Metric:: ", metric);
+      const { filter, filterParameter, filterParameterValue } = metric;
+      if (!filter || !filterParameter || !filterParameterValue) {
+        update = false;
+      }
+    }
+    if (update) {
+      setTempFilters({
+        ...tempFilters,
+        MetricFilter: [
+          ...tempFilters.MetricFilter,
+          {
+            operator: operator,
+            filter: "",
+            filterParameter: "",
+            filterParameterValue: ""
+          }
+        ]
+      });
+    } else {
+      window.alert("Please fill all details first!");
+    }
   };
 
   const clearFilter = () => {
@@ -205,6 +250,7 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 onChange={e => updateFilterName(e.target.value)}
               />
             </Box>
+
             <Box
               sx={{
                 marginTop: "20px",
@@ -216,32 +262,7 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
             >
               <Parameter />
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button
-                sx={{
-                  display: "flex",
-                  justifyContent: "right",
-                  marginTop: "10px"
-                }}
-              >
-                Clear Filter
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                padding: "10px",
-                paddingTop: "5px",
-                border: "1px solid #DDDDDD",
-                borderRadius: "4px"
-              }}
-            >
-              <DimensionFilter
-                addNewDimensionFilter={addNewDimensionFilter}
-                tempFilters={tempFilters}
-                setTempFilters={setTempFilters}
-                removeDimensionIndex={removeDimensionIndex}
-              />
-            </Box>
+
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 sx={{
@@ -262,13 +283,14 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
                 borderRadius: "4px"
               }}
             >
-              <MetricFilter
+              <DimensionFilter
+                addNewDimensionFilter={addNewDimensionFilter}
                 tempFilters={tempFilters}
                 setTempFilters={setTempFilters}
-                removeMetricIndex={removeMetricIndex}
-                addNewMetricFilter={addNewMetricFilter}
+                removeDimensionIndex={removeDimensionIndex}
               />
             </Box>
+
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 sx={{
@@ -283,9 +305,25 @@ export const FilterPopup = ({ modalState, setModalState, appliedFilters = defaul
             </Box>
             <Box
               sx={{
+                padding: "10px",
+                paddingTop: "5px",
+                border: "1px solid #DDDDDD",
+                borderRadius: "4px"
+              }}
+            >
+              <MetricFilter
+                tempFilters={tempFilters}
+                setTempFilters={setTempFilters}
+                removeMetricIndex={removeMetricIndex}
+                addNewMetricFilter={addNewMetricFilter}
+              />
+            </Box>
+
+            <Box
+              sx={{
                 display: "flex",
                 justifyContent: "flex-end",
-                marginTop: "10px"
+                marginTop: "50px"
               }}
             >
               <Button onClick={() => cancelFilterChange()}>Cancel</Button>
