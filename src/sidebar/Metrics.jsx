@@ -1,19 +1,17 @@
-import {
-  FormControl,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { FormControl, InputAdornment, Autocomplete, TextField, Typography } from "@mui/material";
 import React from "react";
 import { IconButton } from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import GoogleAnalyticsIcon from "../assets/svg/GoogleAnalytics.svg";
 
-const MetricMapper = () => {
+const MetricMapper = ({ setMetricMenuState }) => {
+  const handleSingleMetricSettings = () => {
+    setMetricMenuState(true);
+  };
   return (
-    <FormControl
-      sx={{ marginTop: "10px", display: "flex", flexDirection: "row" }}>
+    <FormControl sx={{ marginTop: "10px", display: "flex", flexDirection: "row" }}>
       <TextField
+        onClick={() => handleSingleMetricSettings()}
         sx={{ width: "90%" }}
         id="Analytics"
         label="Google Analytics | Sample data"
@@ -25,30 +23,31 @@ const MetricMapper = () => {
             <InputAdornment position="start">
               <img height="20px" width="20px" src={GoogleAnalyticsIcon} />
             </InputAdornment>
-          ),
+          )
         }}
       />
-      <IconButton
-        disableRipple
-        disableFocusRipple
-        sx={{ marginRight: "10px" }}
-        aria-label="delete">
+      <IconButton disableRipple disableFocusRipple aria-label="delete">
         <Clear />
       </IconButton>
     </FormControl>
   );
 };
 
-const Metrics = () => {
+const Metrics = ({ setMetricMenuState }) => {
   return (
     <div>
-      <Typography
-        style={{ marginTop: "10px" }}
-        fontSize={13}
-        fontWeight={"600"}>
+      <Typography style={{ marginTop: "10px" }} fontSize={13} fontWeight={"600"}>
         Metrics
       </Typography>
-      <MetricMapper />
+      <MetricMapper setMetricMenuState={setMetricMenuState} />
+      <Autocomplete
+        sx={{ marginTop: "10px", width: "84%" }}
+        disablePortal
+        id="combo"
+        options={sample}
+        size="small"
+        renderInput={params => <TextField {...params} label="Add new metrics" />}
+      />
       {/* 
       <TextField
         style={{ marginTop: "5px" }}
@@ -63,3 +62,4 @@ const Metrics = () => {
 };
 
 export default Metrics;
+const sample = [{ label: "Users" }, { label: "Ads" }, { label: "Campaigns" }];

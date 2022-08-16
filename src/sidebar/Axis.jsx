@@ -23,7 +23,6 @@ const Axis = ({ setMetricMenuState }) => {
   };
 
   const handleSingleMetricSettings = () => {
-    console.log("sfd");
     setMetricMenuState(true);
   };
 
@@ -47,11 +46,7 @@ const Axis = ({ setMetricMenuState }) => {
             ),
           }}
         />
-        <IconButton
-          disableRipple
-          disableFocusRipple
-          sx={{ marginRight: "10px" }}
-          aria-label="delete">
+        <IconButton disableRipple disableFocusRipple aria-label="delete">
           <Clear />
         </IconButton>
       </FormControl>

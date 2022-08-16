@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
-import Filters from "./Filters";
-import Metrics from "./Metrics";
-import Dimensions from "./Dimensions";
+
 import TitleInput from "./TitleInput";
-import FilterMessage from "./FilterMessage";
-import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import SingleMetricSettings from "./SingleMetricSettings";
 
@@ -18,12 +14,63 @@ export default function EditLineChartData() {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
 
+  const [appliedFilters, setAppliedFilters] = useState({
+    FilterName: "Filter1",
+    DimensionFilter: [
+      {
+        operator: "",
+        filter: "Dimensions",
+        filterParameter: "Contains",
+        filterParameterValue: "Direct"
+      }
+    ],
+    MetricFilter: [
+      {
+        operator: "",
+        filter: "Metrics",
+        filterParameter: "> Is more",
+        filterParameterValue: "200"
+      }
+    ]
+  });
+
+  const resetDimensionFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
+  const resetMetricFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
   return (
     <div>
       {metricMenuState ? (
         <SingleMetricSettings
+          appliedFilter={appliedFilters}
           setModalState={setModalState}
           setMetricMenuState={setMetricMenuState}
+          resetDimensionFilter={resetDimensionFilter}
+          resetMetricFilter={resetMetricFilter}
         />
       ) : (
         <div>
@@ -32,7 +79,8 @@ export default function EditLineChartData() {
               sx={{ minHeight: "40px" }}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
-              id="panel1a-header">
+              id="panel1a-header"
+            >
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Title
               </Typography>
@@ -42,10 +90,7 @@ export default function EditLineChartData() {
             </AccordionDetails>
           </Accordion>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header">
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Widget Data
               </Typography>
@@ -57,7 +102,12 @@ export default function EditLineChartData() {
         </div>
       )}
 
-      <FilterPopup modalState={modalState} setModalState={setModalState} />
+      <FilterPopup
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
     </div>
   );
 }

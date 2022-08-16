@@ -12,8 +12,15 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Dimensions from "./Dimensions";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import FilterHeading from "./FilterHeading";
+import AppliedFilters from "./AppliedFilters";
 
-const SingleMetricSettings = ({ setMetricMenuState, setModalState }) => {
+const SingleMetricSettings = ({
+  setMetricMenuState,
+  setModalState,
+  appliedFilter,
+  resetDimensionFilter,
+  resetMetricFilter,
+}) => {
   return (
     <div>
       <IconButton
@@ -34,6 +41,11 @@ const SingleMetricSettings = ({ setMetricMenuState, setModalState }) => {
           <Dimensions />
           <Metrics />
           <FilterHeading />
+          <AppliedFilters
+            appliedFilter={appliedFilter}
+            resetDimensionFilter={resetDimensionFilter}
+            resetMetricFilter={resetMetricFilter}
+          />
           <Filters setModalState={setModalState} />
         </AccordionDetails>
       </Accordion>

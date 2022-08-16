@@ -1,86 +1,47 @@
 import * as React from "react";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { Box, IconButton, InputLabel, TextField } from "@mui/material";
-import ButtonGroup from "./ButtonGroup";
-import { Clear } from "@mui/icons-material";
+import AddNewDimensionMetric from "./AddNewDimensionMetric";
 
-const filters = ["Dimensions"];
-const values = [
-  "Contains",
-  "Does not contain",
-  "Exactly matches",
-  "Does not exactly match",
-  "Starts with",
-  "Does not start with",
-  "Ends with",
-  "Does not end with",
-];
-
-export default function DimensionFilter() {
-  const [selectedFilter, setSelectedFilter] = React.useState("");
-  const [selectedValue, setSelectedValue] = React.useState("");
-
-  const handleFilterChange = (event) => {
-    setSelectedFilter(event.target.value);
-  };
-  const handleValueChange = (event) => {
-    setSelectedValue(event.target.value);
+export default function DimensionFilter({
+  tempFilters = [],
+  setTempFilters,
+  removeDimensionIndex,
+  addNewDimensionFilter
+}) {
+  const filterFieldsRenderer = () => {
+    return tempFilters?.DimensionFilter.map((dimensions, index) => {
+      return (
+        <div key={index}>
+          {index > 0 && (
+            <div>
+              <p style={{ paddingLeft: "10px" }}>{dimensions.operator}</p>
+              <span
+                style={{
+                  position: "absolute",
+                  width: "80%",
+                  height: "0px",
+                  left: "10%",
+                  marginTop: "-2%",
+                  border: "1px solid rgba(0, 0, 0, 0.1)"
+                }}
+              ></span>
+            </div>
+          )}
+          <AddNewDimensionMetric
+            addNewDimensionFilter={addNewDimensionFilter}
+            tempFilters={tempFilters}
+            setTempFilters={setTempFilters}
+            index={index}
+            removeDimensionIndex={removeDimensionIndex}
+          />
+        </div>
+      );
+    });
   };
 
   return (
     <div>
-      <p>DimensionFilter</p>
-      <Box>
-        <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
-          <InputLabel id="demo-select-small">Select Filter</InputLabel>
-          <Select
-            labelId="demo-filter-small"
-            id="demo-filter-small"
-            value={selectedFilter}
-            label="Select Value"
-            onChange={handleFilterChange}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {filters.map((filter) => (
-              <MenuItem key={filter} value={filter}>
-                {filter}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
-          <InputLabel id="demo-select-small">Select Value</InputLabel>
-          <Select
-            labelId="demo-value-small"
-            id="demo-value-small"
-            value={selectedValue}
-            label="Select Value"
-            onChange={handleValueChange}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {values.map((value) => (
-              <MenuItem key={value} value={value}>
-                {value}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <TextField
-          sx={{ m: 1, minWidth: 200 }}
-          id="standard-basic"
-          variant="outlined"
-          size="small"
-        />
-
-        <ButtonGroup />
-        <IconButton sx={{ marginRight: "10px" }} aria-label="delete">
-          <Clear />
-        </IconButton>
-      </Box>
+      <p>Dimension Filter</p>
+      {filterFieldsRenderer()}
     </div>
   );
 }

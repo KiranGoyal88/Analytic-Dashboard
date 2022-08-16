@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -10,8 +10,58 @@ import Metrics from "./Metrics";
 import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
 import FilterHeading from "./FilterHeading";
+import { FilterPopup } from "../filterpopup/FilterPopup";
+import AppliedFilters from "./AppliedFilters";
 
 export default function EditGuageChartData() {
+  const [modalState, setModalState] = useState(false);
+  const [appliedFilters, setAppliedFilters] = useState({
+    FilterName: "",
+    DimensionFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ],
+    MetricFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ]
+  });
+
+  const resetDimensionFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
+  const resetMetricFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
   return (
     <div>
       <Accordion sx={{ boxShadow: "none" }}>
@@ -19,7 +69,8 @@ export default function EditGuageChartData() {
           sx={{ minHeight: "40px" }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header">
+          id="panel1a-header"
+        >
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Title
           </Typography>
@@ -29,10 +80,7 @@ export default function EditGuageChartData() {
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header">
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Widget Data
           </Typography>
@@ -40,9 +88,20 @@ export default function EditGuageChartData() {
         <AccordionDetails sx={{ marginLeft: "10px" }}>
           <Metrics />
           <FilterHeading />
-          <Filters />
+          <AppliedFilters
+            appliedFilter={appliedFilters}
+            resetDimensionFilter={resetDimensionFilter}
+            resetMetricFilter={resetMetricFilter}
+          />
+          <Filters setModalState={setModalState} />
         </AccordionDetails>
       </Accordion>
+      <FilterPopup
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
     </div>
   );
 }

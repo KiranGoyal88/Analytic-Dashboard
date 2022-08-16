@@ -17,11 +17,64 @@ import SingleMetricSettings from "./SingleMetricSettings";
 export default function EditBarChartData() {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
+  const [appliedFilters, setAppliedFilters] = useState({
+    FilterName: "",
+    DimensionFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ],
+    MetricFilter: [
+      {
+        operator: "",
+        filter: "",
+        filterParameter: "",
+        filterParameterValue: ""
+      }
+    ]
+  });
+
+  const resetDimensionFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      DimensionFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
+
+  const resetMetricFilter = () => {
+    setAppliedFilters({
+      ...appliedFilters,
+      MetricFilter: [
+        {
+          operator: "",
+          filter: "",
+          filterParameter: "",
+          filterParameterValue: ""
+        }
+      ]
+    });
+  };
 
   return (
     <div>
       {metricMenuState ? (
-        <SingleMetricSettings setModalState={setModalState} setMetricMenuState={setMetricMenuState} />
+        <SingleMetricSettings
+          appliedFilter={appliedFilters}
+          setModalState={setModalState}
+          setMetricMenuState={setMetricMenuState}
+          resetDimensionFilter={resetDimensionFilter}
+          resetMetricFilter={resetMetricFilter}
+        />
       ) : (
         <div>
           <Accordion sx={{ boxShadow: "none" }}>
@@ -52,7 +105,12 @@ export default function EditBarChartData() {
         </div>
       )}
 
-      <FilterPopup modalState={modalState} setModalState={setModalState} />
+      <FilterPopup
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+        modalState={modalState}
+        setModalState={setModalState}
+      />
     </div>
   );
 }
