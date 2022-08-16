@@ -12,7 +12,7 @@ import { FunnelChartComponent } from "./components/FunnelChartComponent";
 import TabComponent from "./components/TabComponent";
 import ResponsiveAppBar from "./components/HeaderComponent";
 import StickyHeadTable from "./TableComponent";
-import BasicDateRangePicker from "./components/CalenderComponent";
+import CalendarComponent from "./components/CalendarComponent";
 import Sidebar from './sidebar/Sidebar';
 import ChartRenderer from './components/ChartRenderer';
 import { ReactComponent as LogsIcon } from "./assets/svg/logs.svg";
@@ -20,12 +20,12 @@ import { ReactComponent as LogsIcon } from "./assets/svg/logs.svg";
 function App() {
 
   const [selectedWidget, setSelectedWidget] = useState(null);
-
+  const [dateRange, setDateRange] = useState({ startDate: '2020-01-01', endDate: '2020-01-31' });
 
   return (
     <div className="Grid" style={{ backgroundColor: "#F5F5F5" }}>
       <ResponsiveAppBar />
-      <Sidebar selectedWidget={selectedWidget} setSelectedWidget={setSelectedWidget} />
+      <Sidebar dateRange={dateRange} selectedWidget={selectedWidget} setSelectedWidget={setSelectedWidget} />
       <div style={{ margin: "0% 5%" }}>
         <Grid
           container
@@ -41,7 +41,7 @@ function App() {
             }}>Google Analytics Report</div>
           </Grid>
           <Grid item xs={6}>
-            <BasicDateRangePicker />
+            <CalendarComponent dateRange={dateRange} setDateRange={setDateRange} />
           </Grid>
         </Grid>
 

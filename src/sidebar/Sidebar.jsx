@@ -4,7 +4,11 @@ import Drawer from "@mui/material/Drawer";
 import "../styles/sidebar.css";
 import EditWidget from "./EditWidget";
 
-export default function Sidebar({ selectedWidget, setSelectedWidget }) {
+export default function Sidebar({
+  selectedWidget,
+  setSelectedWidget,
+  dateRange,
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,6 +37,7 @@ export default function Sidebar({ selectedWidget, setSelectedWidget }) {
               display: "flex",
             }}>
             <EditWidget
+              dateRange={dateRange}
               setSelectedWidget={setSelectedWidget}
               selectedWidget={selectedWidget}
             />

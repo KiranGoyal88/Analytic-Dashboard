@@ -14,7 +14,7 @@ import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import SingleMetricSettings from "./SingleMetricSettings";
 
-export default function EditBarChartData() {
+export default function EditBarChartData({ dateRange }) {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
@@ -24,17 +24,17 @@ export default function EditBarChartData() {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
+        filterParameterValue: "",
+      },
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
-    ]
+        filterParameterValue: "",
+      },
+    ],
   });
 
   const resetDimensionFilter = () => {
@@ -45,9 +45,9 @@ export default function EditBarChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
@@ -59,9 +59,9 @@ export default function EditBarChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
@@ -74,6 +74,7 @@ export default function EditBarChartData() {
           setMetricMenuState={setMetricMenuState}
           resetDimensionFilter={resetDimensionFilter}
           resetMetricFilter={resetMetricFilter}
+          dateRange={dateRange}
         />
       ) : (
         <div>
@@ -82,8 +83,7 @@ export default function EditBarChartData() {
               sx={{ minHeight: "40px" }}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
+              id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Title
               </Typography>
@@ -93,7 +93,10 @@ export default function EditBarChartData() {
             </AccordionDetails>
           </Accordion>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Widget Data
               </Typography>

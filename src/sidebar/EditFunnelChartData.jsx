@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Accordion, AccordionSummary, AccordionDetails, IconButton, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
 import Filters from "./Filters";
@@ -11,7 +17,7 @@ import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import AppliedFilters from "./AppliedFilters";
 
-export default function EditFunnelChartData() {
+export default function EditFunnelChartData({ dateRange }) {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
@@ -21,17 +27,17 @@ export default function EditFunnelChartData() {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
+        filterParameterValue: "",
+      },
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
-    ]
+        filterParameterValue: "",
+      },
+    ],
   });
 
   const resetDimensionFilter = () => {
@@ -42,9 +48,9 @@ export default function EditFunnelChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
@@ -56,9 +62,9 @@ export default function EditFunnelChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
@@ -66,17 +72,22 @@ export default function EditFunnelChartData() {
     <div>
       {metricMenuState ? (
         <div>
-          <IconButton onClick={() => setMetricMenuState(false)} sx={{ marginRight: "100px", marginLeft: "10px" }}>
+          <IconButton
+            onClick={() => setMetricMenuState(false)}
+            sx={{ marginRight: "100px", marginLeft: "10px" }}>
             <ArrowBackIosNew fontSize="small" />
           </IconButton>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit chart rows
               </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ marginLeft: "10px" }}>
-              <Dimensions />
+              <Dimensions dateRange={dateRange} />
               <Metrics />
               <FilterHeading />
               <AppliedFilters
@@ -95,8 +106,7 @@ export default function EditFunnelChartData() {
               sx={{ minHeight: "40px" }}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
+              id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Title
               </Typography>
@@ -106,7 +116,10 @@ export default function EditFunnelChartData() {
             </AccordionDetails>
           </Accordion>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Widget Data
               </Typography>

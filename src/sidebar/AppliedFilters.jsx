@@ -26,6 +26,7 @@ const AppliedFilters = ({
   appliedFilter,
   resetDimensionFilter,
   resetMetricFilter,
+  showRemove = true,
 }) => {
   const [filterDimensionValue, setFilterDimensionValue] = useState("");
   const [filterMetricValue, setFilterMetricValue] = useState("");
@@ -67,13 +68,15 @@ const AppliedFilters = ({
               size="small"
               inputProps={{ readOnly: true }}
             />
-            <IconButton
-              onClick={() => resetDimensionFilter()}
-              disableRipple
-              disableFocusRipple
-              aria-label="delete">
-              <Clear />
-            </IconButton>
+            {showRemove && (
+              <IconButton
+                onClick={() => resetDimensionFilter()}
+                disableRipple
+                disableFocusRipple
+                aria-label="delete">
+                <Clear />
+              </IconButton>
+            )}
           </FormControl>
         )}
       {filterMetricValue.length > 0 &&
@@ -95,13 +98,15 @@ const AppliedFilters = ({
               size="small"
               inputProps={{ readOnly: true }}
             />
-            <IconButton
-              onClick={() => resetMetricFilter()}
-              disableRipple
-              disableFocusRipple
-              aria-label="delete">
-              <Clear />
-            </IconButton>
+            {showRemove && (
+              <IconButton
+                onClick={() => resetMetricFilter()}
+                disableRipple
+                disableFocusRipple
+                aria-label="delete">
+                <Clear />
+              </IconButton>
+            )}
           </FormControl>
         )}
     </div>

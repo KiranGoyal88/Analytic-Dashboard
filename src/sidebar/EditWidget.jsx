@@ -29,24 +29,24 @@ function TabPanel(props) {
   );
 }
 
-const DataRenderer = ({ selectedWidget }) => {
+const DataRenderer = ({ selectedWidget, dateRange }) => {
   switch (selectedWidget) {
     case "LineChart":
-      return <EditLineChartData />;
+      return <EditLineChartData dateRange={dateRange} />;
     case "PieChart":
-      return <EditPieChartData />;
+      return <EditPieChartData dateRange={dateRange} />;
     case "BarChart":
-      return <EditBarChartData />;
+      return <EditBarChartData dateRange={dateRange} />;
     case "FunnelChart":
-      return <EditFunnelChartData />;
+      return <EditFunnelChartData dateRange={dateRange} />;
     case "GaugeChart":
-      return <EditGuageChartData />;
+      return <EditGuageChartData dateRange={dateRange} />;
     case "Table":
-      return <EditTableData />;
+      return <EditTableData dateRange={dateRange} />;
   }
 };
 
-function EditWidget({ selectedWidget, setSelectedWidget }) {
+function EditWidget({ selectedWidget, setSelectedWidget, dateRange }) {
   const [currentTab, setCurrentTab] = useState(0);
 
   const handleChange = (event, tab) => {
@@ -80,7 +80,7 @@ function EditWidget({ selectedWidget, setSelectedWidget }) {
           </Tabs>
         </Box>
         <TabPanel value={currentTab} index={0}>
-          <DataRenderer selectedWidget={selectedWidget} />
+          <DataRenderer dateRange={dateRange} selectedWidget={selectedWidget} />
         </TabPanel>
         <TabPanel value={currentTab} index={1}>
           Settings

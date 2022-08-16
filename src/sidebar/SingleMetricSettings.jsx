@@ -20,6 +20,7 @@ const SingleMetricSettings = ({
   appliedFilter,
   resetDimensionFilter,
   resetMetricFilter,
+  dateRange,
 }) => {
   return (
     <div>
@@ -38,7 +39,7 @@ const SingleMetricSettings = ({
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Dimensions />
+          <Dimensions dateRange={dateRange} />
           <Metrics />
           <FilterHeading />
           <AppliedFilters

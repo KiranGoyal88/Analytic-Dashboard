@@ -22,17 +22,17 @@ export default function EditGuageChartData() {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
+        filterParameterValue: "",
+      },
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
-    ]
+        filterParameterValue: "",
+      },
+    ],
   });
 
   const resetDimensionFilter = () => {
@@ -43,9 +43,9 @@ export default function EditGuageChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
@@ -57,9 +57,9 @@ export default function EditGuageChartData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
   return (
@@ -69,8 +69,7 @@ export default function EditGuageChartData() {
           sx={{ minHeight: "40px" }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
+          id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Title
           </Typography>
@@ -80,7 +79,10 @@ export default function EditGuageChartData() {
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Widget Data
           </Typography>

@@ -13,7 +13,7 @@ import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import AppliedFilters from "./AppliedFilters";
 
-export default function EditTableData() {
+export default function EditTableData({ dateRange }) {
   const [modalState, setModalState] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
     FilterName: "",
@@ -22,17 +22,17 @@ export default function EditTableData() {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
+        filterParameterValue: "",
+      },
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: ""
-      }
-    ]
+        filterParameterValue: "",
+      },
+    ],
   });
 
   const resetDimensionFilter = () => {
@@ -43,9 +43,9 @@ export default function EditTableData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
 
@@ -57,9 +57,9 @@ export default function EditTableData() {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: ""
-        }
-      ]
+          filterParameterValue: "",
+        },
+      ],
     });
   };
   return (
@@ -69,8 +69,7 @@ export default function EditTableData() {
           sx={{ minHeight: "40px" }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
+          id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Title
           </Typography>
@@ -80,13 +79,16 @@ export default function EditTableData() {
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Widget Data
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Dimensions />
+          <Dimensions dateRange={dateRange} />
           <Metrics />
           <FilterHeading />
           <AppliedFilters
