@@ -1,41 +1,26 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import {
-  Select,
-  InputLabel,
-  Autocomplete,
-  TextField,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
+import { Select, InputLabel, Autocomplete, TextField, InputAdornment, IconButton } from "@mui/material";
 import { FormControl } from "@mui/material";
 import GoogleAnalyticsIcon from "../assets/svg/GoogleAnalytics.svg";
 import { Clear } from "@mui/icons-material";
 
-const Axis = ({ setMetricMenuState }) => {
-  const [selectedAxis, setSelectedAxis] = useState("");
-  const [leftMetrics, setLeftMetrics] = useState(["users", "ads"]);
-  const [rightMetrics, setRightMetrics] = useState(["users"]);
-
-  const handleChange = (event) => {
-    setSelectedAxis(event.target.value);
-  };
-
-  const handleSingleMetricSettings = () => {
+const Axis = ({ setMetricMenuState, totalMetrics, setSelectedMetric }) => {
+  const handleSingleMetricSettings = metricName => {
     setMetricMenuState(true);
+    setSelectedMetric(metricName);
   };
 
-  const MetricMapper = ({ metric }) => {
+  const MetricMapper = ({ metricName = "defaultName" }) => {
     return (
-      <FormControl
-        sx={{ marginTop: "10px", display: "flex", flexDirection: "row" }}>
+      <FormControl sx={{ marginTop: "10px", display: "flex", flexDirection: "row" }}>
         <TextField
-          onClick={() => handleSingleMetricSettings()}
+          onClick={() => handleSingleMetricSettings(metricName)}
           sx={{ width: "90%" }}
           id="Analytics"
           label="Google Analytics | Sample data"
-          defaultValue="Users"
+          defaultValue={metricName}
           size="small"
           InputProps={{
             readOnly: true,
@@ -43,7 +28,7 @@ const Axis = ({ setMetricMenuState }) => {
               <InputAdornment position="start">
                 <img height="20px" width="20px" src={GoogleAnalyticsIcon} />
               </InputAdornment>
-            ),
+            )
           }}
         />
         <IconButton disableRipple disableFocusRipple aria-label="delete">
@@ -58,8 +43,8 @@ const Axis = ({ setMetricMenuState }) => {
       <Typography fontSize={13} fontWeight={"600"}>
         Left Axis
       </Typography>
-      {leftMetrics.map((metric) => {
-        return <MetricMapper />;
+      {totalMetrics.leftAxis.map(metricName => {
+        return <MetricMapper metricName={metricName} />;
       })}
       <Autocomplete
         sx={{ marginTop: "10px", width: "84%" }}
@@ -67,15 +52,13 @@ const Axis = ({ setMetricMenuState }) => {
         id="combo"
         options={sample}
         size="small"
-        renderInput={(params) => (
-          <TextField {...params} label="Add new metrics" />
-        )}
+        renderInput={params => <TextField {...params} label="Add new metrics" />}
       />
       <Typography sx={{ marginTop: "20px" }} fontSize={13} fontWeight={"600"}>
         Right Axis
       </Typography>
-      {rightMetrics.map((metric) => {
-        return <MetricMapper />;
+      {totalMetrics.rightAxis.map(metricName => {
+        return <MetricMapper metricName={metricName} />;
       })}
       <Autocomplete
         sx={{ marginTop: "10px", width: "84%" }}
@@ -83,9 +66,7 @@ const Axis = ({ setMetricMenuState }) => {
         id="combo"
         options={sample}
         size="small"
-        renderInput={(params) => (
-          <TextField {...params} label="Add new metrics" />
-        )}
+        renderInput={params => <TextField {...params} label="Add new metrics" />}
       />
     </div>
   );
@@ -100,5 +81,5 @@ const sample = [
   { label: "What is Lorem Ipsum?" },
   { label: "What is Lorem Ipsum?" },
   { label: "What is Lorem Ipsum?" },
-  { label: "What is Lorem Ipsum?" },
+  { label: "What is Lorem Ipsum?" }
 ];

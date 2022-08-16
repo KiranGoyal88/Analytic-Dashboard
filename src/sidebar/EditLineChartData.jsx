@@ -15,6 +15,12 @@ import FilterHeading from "./FilterHeading";
 export default function EditLineChartData({ dateRange }) {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
+  const [selectedMetric, setSelectedMetric] = useState(null);
+
+  const [totalMetrics, setTotalMetrics] = useState({
+    leftAxis: ["Users", "Impressions"],
+    rightAxis: ["Clicks", "CTR"]
+  });
 
   const [appliedFilters, setAppliedFilters] = useState({
     FilterName: "Filter1",
@@ -23,17 +29,17 @@ export default function EditLineChartData({ dateRange }) {
         operator: "",
         filter: "Dimensions",
         filterParameter: "Contains",
-        filterParameterValue: "Direct",
-      },
+        filterParameterValue: "Direct"
+      }
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "Metrics",
         filterParameter: "> Is more",
-        filterParameterValue: "200",
-      },
-    ],
+        filterParameterValue: "200"
+      }
+    ]
   });
 
   const resetDimensionFilter = () => {
@@ -44,9 +50,9 @@ export default function EditLineChartData({ dateRange }) {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -58,9 +64,9 @@ export default function EditLineChartData({ dateRange }) {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -74,6 +80,8 @@ export default function EditLineChartData({ dateRange }) {
           setMetricMenuState={setMetricMenuState}
           resetDimensionFilter={resetDimensionFilter}
           resetMetricFilter={resetMetricFilter}
+          selectedMetric={selectedMetric}
+          setSelectedMetric={setSelectedMetric}
         />
       ) : (
         <div>
@@ -82,7 +90,8 @@ export default function EditLineChartData({ dateRange }) {
               sx={{ minHeight: "40px" }}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
-              id="panel1a-header">
+              id="panel1a-header"
+            >
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Title
               </Typography>
@@ -92,21 +101,19 @@ export default function EditLineChartData({ dateRange }) {
             </AccordionDetails>
           </Accordion>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header">
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Widget Data
               </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ marginLeft: "10px" }}>
-              <Axis setMetricMenuState={setMetricMenuState} />
-              <FilterHeading />
-              <AppliedFilters
-                appliedFilter={appliedFilters}
-                showRemove={false}
+              <Axis
+                setSelectedMetric={setSelectedMetric}
+                setMetricMenuState={setMetricMenuState}
+                totalMetrics={totalMetrics}
               />
+              <FilterHeading />
+              <AppliedFilters appliedFilter={appliedFilters} showRemove={false} />
             </AccordionDetails>
           </Accordion>
         </div>
