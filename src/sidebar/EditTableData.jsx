@@ -7,13 +7,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
 import Filters from "./Filters";
 import Metrics from "./Metrics";
-import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
 import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import AppliedFilters from "./AppliedFilters";
+import DimensionsTable from "./DimensionsTable";
 
-export default function EditTableData({ dateRange }) {
+export default function EditTableData() {
   const [modalState, setModalState] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
     FilterName: "",
@@ -22,17 +22,17 @@ export default function EditTableData({ dateRange }) {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: "",
-      },
+        filterParameterValue: ""
+      }
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: "",
-      },
-    ],
+        filterParameterValue: ""
+      }
+    ]
   });
 
   const resetDimensionFilter = () => {
@@ -43,9 +43,9 @@ export default function EditTableData({ dateRange }) {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -57,9 +57,9 @@ export default function EditTableData({ dateRange }) {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
   return (
@@ -69,7 +69,8 @@ export default function EditTableData({ dateRange }) {
           sx={{ minHeight: "40px" }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header">
+          id="panel1a-header"
+        >
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Title
           </Typography>
@@ -79,16 +80,13 @@ export default function EditTableData({ dateRange }) {
         </AccordionDetails>
       </Accordion>
       <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header">
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography fontSize={14} fontWeight={"600"}>
             Edit Widget Data
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ marginLeft: "10px" }}>
-          <Dimensions dateRange={dateRange} />
+          <DimensionsTable />
           <Metrics />
           <FilterHeading />
           <AppliedFilters

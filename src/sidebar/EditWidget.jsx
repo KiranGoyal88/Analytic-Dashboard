@@ -19,7 +19,8 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}>
+      {...other}
+    >
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -42,7 +43,7 @@ const DataRenderer = ({ selectedWidget, dateRange }) => {
     case "GaugeChart":
       return <EditGuageChartData dateRange={dateRange} />;
     case "Table":
-      return <EditTableData dateRange={dateRange} />;
+      return <EditTableData />;
   }
 };
 
@@ -60,9 +61,7 @@ function EditWidget({ selectedWidget, setSelectedWidget, dateRange }) {
   return (
     <div className="container">
       <div className="header">
-        <IconButton
-          onClick={() => closeDrawer()}
-          sx={{ marginRight: "100px", marginLeft: "10px" }}>
+        <IconButton onClick={() => closeDrawer()} sx={{ marginRight: "100px", marginLeft: "10px" }}>
           <ArrowForwardIosIcon fontSize="small" />
         </IconButton>
 
@@ -70,11 +69,7 @@ function EditWidget({ selectedWidget, setSelectedWidget, dateRange }) {
       </div>
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={currentTab}
-            onChange={handleChange}
-            variant="fullWidth"
-            aria-label="Edit Widget">
+          <Tabs value={currentTab} onChange={handleChange} variant="fullWidth" aria-label="Edit Widget">
             <Tab label="Data" />
             <Tab label="Settings" />
           </Tabs>
