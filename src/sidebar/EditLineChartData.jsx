@@ -70,6 +70,27 @@ export default function EditLineChartData({ dateRange }) {
     });
   };
 
+  const pushMetricToLeftAxis = value => {
+    setTotalMetrics({ ...totalMetrics, leftAxis: [...totalMetrics.leftAxis, value] });
+  };
+
+  const pushMetricToRightAxis = value => {
+    setTotalMetrics({ ...totalMetrics, rightAxis: [...totalMetrics.rightAxis, value] });
+  };
+
+  const removeMetricFromLeftAxis = index => {
+    setTotalMetrics({
+      ...totalMetrics,
+      leftAxis: [...totalMetrics.leftAxis.slice(0, index), ...totalMetrics.leftAxis.slice(index + 1)]
+    });
+  };
+  const removeMetricFromRightAxis = index => {
+    setTotalMetrics({
+      ...totalMetrics,
+      rightAxis: [...totalMetrics.rightAxis.slice(0, index), ...totalMetrics.rightAxis.slice(index + 1)]
+    });
+  };
+
   return (
     <div>
       {metricMenuState ? (
@@ -111,6 +132,11 @@ export default function EditLineChartData({ dateRange }) {
                 setSelectedMetric={setSelectedMetric}
                 setMetricMenuState={setMetricMenuState}
                 totalMetrics={totalMetrics}
+                setTotalMetrics={setTotalMetrics}
+                pushMetricToLeftAxis={pushMetricToLeftAxis}
+                pushMetricToRightAxis={pushMetricToRightAxis}
+                removeMetricFromLeftAxis={removeMetricFromLeftAxis}
+                removeMetricFromRightAxis={removeMetricFromRightAxis}
               />
               <FilterHeading />
               <AppliedFilters appliedFilter={appliedFilters} showRemove={false} />
