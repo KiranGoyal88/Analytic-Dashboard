@@ -18,12 +18,12 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 1200,
+  height: 800,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   display: "flex",
   flexDirection: "column"
-
   // p: 4,
 };
 
@@ -36,7 +36,8 @@ const headerStyle = {
 const bodyStyle = {
   display: "flex",
   flexDirection: "column",
-  p: 3
+  p: 3,
+  overflowY: "auto"
 };
 
 const defaultFilter = {

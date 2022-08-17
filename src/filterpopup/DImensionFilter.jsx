@@ -12,16 +12,16 @@ export default function DimensionFilter({
       return (
         <div key={index}>
           {index > 0 && (
-            <div>
+            <div style={{ display: "flex" }}>
               <p style={{ paddingLeft: "10px" }}>{dimensions.operator}</p>
               <span
                 style={{
-                  position: "absolute",
-                  width: "80%",
+                  width: "89%",
                   height: "0px",
                   left: "10%",
-                  marginTop: "-2%",
-                  border: "1px solid rgba(0, 0, 0, 0.1)"
+                  marginLeft: "20px",
+                  marginTop: "2.2%",
+                  border: "0.5px solid rgba(0, 0, 0, 0.1)"
                 }}
               ></span>
             </div>
