@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { ReactComponent as LogsIcon } from "../assets/svg/logs.svg";
 // import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["Products", "Pricing", "Blog"];
@@ -96,9 +97,12 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box> */}
-          <div style={{ width: "55%", alignSelf: "right" }}></div>
-          <Button variant="outlined">+ Add more sources</Button>
-          <div style={{ width: "1%", alignSelf: "right" }}></div>
+          <div style={{ width: "52%", alignSelf: "right" }}></div>
+          <LogsIcon />
+          <Button variant="outlined" style={{ margin: "0% 1%" }}>
+            + Add more sources
+          </Button>
+          {/* <div style={{ width: "1%", alignSelf: "right" }}></div> */}
 
           {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography

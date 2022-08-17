@@ -5,18 +5,22 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Axis from "./Axis";
-import Filters from "./Filters";
-import Metrics from "./Metrics";
-import Dimensions from "./Dimensions";
 import TitleInput from "./TitleInput";
-import FilterMessage from "./FilterMessage";
 import FilterHeading from "./FilterHeading";
 import { FilterPopup } from "../filterpopup/FilterPopup";
 import SingleMetricSettings from "./SingleMetricSettings";
+import AppliedFilters from "./AppliedFilters";
 
 export default function EditBarChartData({ dateRange }) {
   const [modalState, setModalState] = useState(false);
   const [metricMenuState, setMetricMenuState] = useState(false);
+  const [selectedMetric, setSelectedMetric] = useState(null);
+
+  const [totalMetrics, setTotalMetrics] = useState({
+    leftAxis: ["Users", "Impressions"],
+    rightAxis: ["Clicks", "CTR"]
+  });
+
   const [appliedFilters, setAppliedFilters] = useState({
     FilterName: "",
     DimensionFilter: [
@@ -24,17 +28,17 @@ export default function EditBarChartData({ dateRange }) {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: "",
-      },
+        filterParameterValue: ""
+      }
     ],
     MetricFilter: [
       {
         operator: "",
         filter: "",
         filterParameter: "",
-        filterParameterValue: "",
-      },
-    ],
+        filterParameterValue: ""
+      }
+    ]
   });
 
   const resetDimensionFilter = () => {
@@ -45,9 +49,9 @@ export default function EditBarChartData({ dateRange }) {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -59,9 +63,9 @@ export default function EditBarChartData({ dateRange }) {
           operator: "",
           filter: "",
           filterParameter: "",
-          filterParameterValue: "",
-        },
-      ],
+          filterParameterValue: ""
+        }
+      ]
     });
   };
 
@@ -69,12 +73,14 @@ export default function EditBarChartData({ dateRange }) {
     <div>
       {metricMenuState ? (
         <SingleMetricSettings
+          dateRange={dateRange}
           appliedFilter={appliedFilters}
           setModalState={setModalState}
           setMetricMenuState={setMetricMenuState}
           resetDimensionFilter={resetDimensionFilter}
           resetMetricFilter={resetMetricFilter}
-          dateRange={dateRange}
+          selectedMetric={selectedMetric}
+          setSelectedMetric={setSelectedMetric}
         />
       ) : (
         <div>
@@ -83,7 +89,8 @@ export default function EditBarChartData({ dateRange }) {
               sx={{ minHeight: "40px" }}
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
-              id="panel1a-header">
+              id="panel1a-header"
+            >
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Title
               </Typography>
@@ -93,16 +100,19 @@ export default function EditBarChartData({ dateRange }) {
             </AccordionDetails>
           </Accordion>
           <Accordion defaultExpanded={true} sx={{ boxShadow: "none" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header">
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography fontSize={14} fontWeight={"600"}>
                 Edit Widget Data
               </Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ marginLeft: "10px" }}>
-              <Axis setMetricMenuState={setMetricMenuState} />
+              <Axis
+                setSelectedMetric={setSelectedMetric}
+                setMetricMenuState={setMetricMenuState}
+                totalMetrics={totalMetrics}
+              />
+              <FilterHeading />
+              <AppliedFilters appliedFilter={appliedFilters} showRemove={false} />
             </AccordionDetails>
           </Accordion>
         </div>

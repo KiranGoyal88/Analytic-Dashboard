@@ -18,7 +18,7 @@ function ChartRenderer(props) {
   return (
     <div
       style={{
-        margin: "1% 2%",
+        margin: "0% 1%",
         padding: "2% 2%",
         border: "1px solid #EFEFEF",
         borderRadius: "8px",
@@ -29,31 +29,33 @@ function ChartRenderer(props) {
       }}
     >
       {/* {props.chartType !== "GaugeChart" ? ( */}
-      <div
-        style={{
-          alignSelf: "flex-end",
-          marginRight: "10px",
-          marginTop: "10px",
-          display: "flex"
-        }}
-      >
-        <ToggleButtonGroup
-          sx={{ padding: 0 }}
-          size="small"
-          color="info"
-          value={toggleButtons}
-          exclusive
-          onChange={handleAlignment}
-          aria-label="text alignment"
+      <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+        <h3>{props.chartType}</h3>
+        <div
+          style={{
+            marginRight: "10px",
+            marginTop: "10px",
+            display: "flex"
+          }}
         >
-          <ToggleButton size="small" value="chart">
-            {toggleButtons === "chart" ? <ActiveGraphIcon /> : <GraphIcon />}
-          </ToggleButton>
-          <ToggleButton size="small" value="table">
-            {toggleButtons === "table" ? <ActiveTableIcon /> : <TableIcon />}
-          </ToggleButton>
-        </ToggleButtonGroup>
-        <MoreVert setSelectedWidget={props.setSelectedWidget} chartType={props.chartType} />
+          <ToggleButtonGroup
+            sx={{ padding: 0 }}
+            size="small"
+            color="info"
+            value={toggleButtons}
+            exclusive
+            onChange={handleAlignment}
+            aria-label="text alignment"
+          >
+            <ToggleButton size="small" value="chart">
+              {toggleButtons === "chart" ? <ActiveGraphIcon /> : <GraphIcon />}
+            </ToggleButton>
+            <ToggleButton size="small" value="table">
+              {toggleButtons === "table" ? <ActiveTableIcon /> : <TableIcon />}
+            </ToggleButton>
+          </ToggleButtonGroup>
+          <MoreVert setSelectedWidget={props.setSelectedWidget} chartType={props.chartType} />
+        </div>
         {/* <IconButton
           aria-label="delete"
           size="medium"

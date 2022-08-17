@@ -20,7 +20,7 @@ import { ReactComponent as LogsIcon } from "./assets/svg/logs.svg";
 function App() {
 
   const [selectedWidget, setSelectedWidget] = useState(null);
-  const [dateRange, setDateRange] = useState({ startDate: '2020-01-01', endDate: '2020-01-31' });
+  const [dateRange, setDateRange] = useState({ startDate: '2022-01-01', endDate: '2022-01-31' });
 
   return (
     <div className="Grid" style={{ backgroundColor: "#F5F5F5" }}>
@@ -38,7 +38,9 @@ function App() {
             <div style={{
               fontSize: "36px",
               letterSpacing: "-0.02em"
-            }}>Google Analytics Report</div>
+            }}>
+              <LogsIcon /> Google Analytics Report
+            </div>
           </Grid>
           <Grid item xs={6}>
             <CalendarComponent dateRange={dateRange} setDateRange={setDateRange} />
@@ -51,11 +53,11 @@ function App() {
           <p style={{ color: "gray" }}> Google Analytics</p>
         </div>
 
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6} >
+        <Grid container rowSpacing={1} columnSpacing={1}>
+          <Grid item xs={12} md={6}>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
           </Grid>
-          <Grid item xs={6} >
+          <Grid item xs={12} md={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='BarChart'><BarChartComponent /></ChartRenderer>
           </Grid>
         </Grid>
@@ -63,13 +65,13 @@ function App() {
         <Grid
           container
           rowSpacing={1}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          columnSpacing={{ xs: 1, sm: 1, md: 1 }}
           style={{ marginTop: "20px" }}
         >
-          <Grid item xs={6} >
+          <Grid item xs={12} md={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
           </Grid>
-          <Grid item container xs={6}>
+          <Grid item container xs={12} md={6}>
             {[1, 1, 1, 1].map(() => {
               return (
                 <Grid item xs={6} >
@@ -85,29 +87,29 @@ function App() {
           <p style={{ color: "gray" }}> Google Analytics</p>
         </div>
 
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6} >
+        <Grid container rowSpacing={1} columnSpacing={1}>
+          <Grid item xs={12} md={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
           </Grid>
-          <Grid item xs={6} >
+          <Grid item xs={12} md={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='LineChart'><LineChartComponent /></ChartRenderer>
           </Grid>
         </Grid>
         <Grid
           container
           rowSpacing={1}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          columnSpacing={1}
         ></Grid>
 
         <Grid
           container
           rowSpacing={1}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          columnSpacing={1}
           style={{ marginTop: "20px" }}
         >
           {[1, 1, 1, 1].map(() => {
             return (
-              <Grid item xs={3} >
+              <Grid item xs={6} md={3} >
                 <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='GaugeChart'><GaugeChartComponent /></ChartRenderer>
               </Grid>
             );
@@ -122,14 +124,14 @@ function App() {
         <Grid
           container
           rowSpacing={1}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          columnSpacing={1}
           style={{ marginTop: "20px" }}
         >
-          <Grid item xs={6} >
+          <Grid item xs={12} md={6} >
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='Table'><StickyHeadTable /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='FunnelChart'><FunnelChartComponent /></ChartRenderer>
           </Grid>
-          <Grid item xs={6} >
+          <Grid item xs={12} md={6}>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='PieChart'><PieChartComponent /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='Table'><StickyHeadTable numRows={3} /></ChartRenderer>
             <ChartRenderer setSelectedWidget={setSelectedWidget} chartType='Table'><StickyHeadTable numRows={3} /></ChartRenderer>
